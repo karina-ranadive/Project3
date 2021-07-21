@@ -7,6 +7,7 @@ Nonprofit::Nonprofit(std::string street, int zip, std::string state, int regeion
 	this->region = region;
 	this->revenue = revenue;
 	this->NTEE = NTEE;
+	matchIndex = 0;
 }
 
 std::string Nonprofit::getStreet() {
@@ -31,14 +32,6 @@ int Nonprofit::getRevenue() {
 
 std::string Nonprofit::getNTEE() {
 	return NTEE;
-}
-
-int Nonprofit::getMatchIndex() {
-	return matchIndex;
-}
-
-void Nonprofit::setMatchIndex(int matchIndex) {
-	this->matchIndex = matchIndex;
 }
 
 void Nonprofit::printNonprofit() {

@@ -7,9 +7,10 @@ using namespace std;
 class MapClass{
     map<string, Nonprofit> orgs;
     map<string, Nonprofit>::iterator iter;
+    string category;
 
     public:
-        MapClass();
+        MapClass(string category);
         void InsertIntoMap(string name, Nonprofit obj);
         void SearchRegion(int region);
         void SearchName(string name);

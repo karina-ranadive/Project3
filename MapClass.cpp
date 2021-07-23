@@ -1,8 +1,9 @@
 #include "MapClass.h"
 
-MapClass::MapClass(){
-
+MapClass::MapClass(string category){
+    this->category = category;
 }
+
 void MapClass::InsertIntoMap(string name, Nonprofit obj){
     orgs[name] = obj;
 

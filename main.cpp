@@ -218,6 +218,10 @@ int main(){
 		}
 
 	}
+
+	for(unsigned int i = 0. i < maps.size(); i++){
+		maps[i].second.ResetNonProfitVars();
+	}
 	
 	
 	

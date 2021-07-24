@@ -26,6 +26,15 @@ void MapClass::SearchName(string name){
     }
 }
 
+bool MapClass::FindName(string name){
+    for(iter = orgs.begin(); iter!=orgs.end(); ++iter){
+        if(iter->first == name){
+            return true;
+        }
+    }
+    return false;
+}
+
 void MapClass::SearchState(string state){
     for(iter = orgs.begin(); iter!=orgs.end(); ++iter){
         if(iter->second.getState() == state){

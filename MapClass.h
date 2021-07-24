@@ -14,6 +14,7 @@ class MapClass{
         void InsertIntoMap(string name, Nonprofit obj);
         void SearchRegion(int region);
         void SearchName(string name);
+        bool FindName(string name);
         void SearchState(string state);
         void SearchStreet(string street);
         void SearchZip(int zip);

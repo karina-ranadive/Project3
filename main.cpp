@@ -161,7 +161,7 @@ int main(){
 		}
 	} 
 
-	//--------------------------------------------MAP IMPLEMENTATION-----------------------------------------------
+	//--------------------------------------------MAP USER IMPLEMENTATION-----------------------------------------------
 
 	cout << "Would you like to Search By Name or by Preferences?" << endl;
 	string choice;
@@ -173,9 +173,18 @@ int main(){
 		string name;
 		cin >> name;
 		cout << "Loading Results..." << endl;
+		int count = 0;
 		for(unsigned int i = 0; i < maps.size(); i++){
-			maps[i].second.PrintbyName(name);
+			if(maps[i].second.FindName(name) == true){
+				maps[i].second.PrintbyName(name);
+				break;
+			}
+			count++;
 		}
+		if(count = 9){
+			cout << "The nonprofit you are looking for cannot be found in our database." << endl;
+		}
+
 	
 	}
 	

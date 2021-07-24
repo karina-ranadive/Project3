@@ -1,18 +1,31 @@
-#include MapClass.h
-#include Nonprofit.h
+#include "MapClass.h"
+#include "Nonprofit.h"
 #include <fstream>
 #include <sstream>
+#include <string>
+#include <vector>
 
 int main(){
+
+	vector<pair<int, MapClass>> maps;
 	MapClass a = MapClass("Arts, Culture & Humanities");
+	maps.push_back(make_pair(1, a));
 	MapClass b = MapClass("Education");
+	maps.push_back(make_pair(2, b));
 	MapClass cd = MapClass("Environment and Animals");
+	maps.push_back(make_pair(3, cd));
 	MapClass eh = MapClass("Health");
+	maps.push_back(make_pair(4, eh));
 	MapClass ip = MapClass("Human Services");
+	maps.push_back(make_pair(5, ip));
 	MapClass q = MapClass("International, Foreign Affairs");
+	maps.push_back(make_pair(6, q));
 	MapClass rw = MapClass("Public, Societal Benefit");
+	maps.push_back(make_pair(7, rw));
 	MapClass x = MapClass("Religion Related");
+	maps.push_back(make_pair(8, x));
 	MapClass y = MapClass("Mutual/Membership Benefit");
+	maps.push_back(make_pair(9, y));
 
 	ifstream inFile("NPOMasterFile.csv");
 
@@ -147,4 +160,59 @@ int main(){
 			}
 		}
 	} 
+
+	//--------------------------------------------MAP IMPLEMENTATION-----------------------------------------------
+
+	cout << "Would you like to Search By Name or by Preferences?" << endl;
+	string choice;
+	cin >> choice;
+
+	//Search By Name
+	if(choice == "Name"){
+		cout << "What is the name of the nonprofit your are looking for?" << endl;
+		string name;
+		cin >> name;
+		cout << "Loading Results..." << endl;
+		for(unsigned int i = 0; i < maps.size(); i++){
+			maps[i].second.PrintbyName(name);
+		}
+	
+	}
+	
+	//Search Solely by Preferences 
+	else{
+		cout << "Fill out preferences for nonprofits and if you do not have a preference, press enter on your keyboard" << endl;
+		cout << "Based on your preferences, we will list out nonprofits related to your preferences!" << endl;
+		cout << "Preference for Category: ";
+		int category;
+		cin >> category;
+		cout << "Preference for region: ";
+		int region;
+		cin >> region; 
+		cout << "Preference for state: ";
+		string state;
+		cin >> state;
+		cout << "Preference for Street Address: ";
+		string street;
+		cin >> street;
+		cout << "Preference for Zip Code: ";
+		int zip;
+		cin >> zip;
+		cout << "Preference for Sub-Category: ";
+		string subcat;
+		cin >> subcat;
+	
+		for(unsigned int i = 0; i < maps.size(); i++){
+			if(category == maps[i].first){
+				maps[i].second.PrintPreferences(region, state, street, zip, subcat);
+			}
+		}
+
+	}
+	
+	
+	
+
+
+
 }

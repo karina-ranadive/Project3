@@ -1,0 +1,14 @@
+
+void::MapClass::PrintMatchIndex(int number){
+    for(iter = orgs.begin(); iter!=orgs.end(); ++iter){
+        if(iter->second.matchIndex == number){
+            iter->second.printNonprofit();
+        }
+    }
+}
+
+int highest = FindHighestMatchIndex();
+for(unsigned int i = highest; i > 0; i++){
+    PrintMatchIndex(i);
+}
+

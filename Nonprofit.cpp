@@ -1,13 +1,15 @@
 #include "Nonprofit.h"
 
-Nonprofit::Nonprofit(std::string street, int zip, std::string state, int regeion, int revenue, std::string NTEE) {
+Nonprofit::Nonprofit(std::string name, std::string street, int zip, std::string state, int region, std::string NTEE) {
+	this->name = name;
 	this->street = street;
 	this->zip = zip;
 	this->state = state;
 	this->region = region;
-	this->revenue = revenue;
 	this->NTEE = NTEE;
 	matchIndex = 0;
+	bool flag = true;
+	
 }
 
 std::string Nonprofit::getStreet() {
@@ -26,14 +28,20 @@ int Nonprofit::getRegion() {
 	return region;
 }
 
-int Nonprofit::getRevenue() {
-	return revenue;
-}
-
 std::string Nonprofit::getNTEE() {
 	return NTEE;
+}
+
+std::string Nonprofit::getSubCat() {
+	return subcategory;
 }
 
 void Nonprofit::printNonprofit() {
 	// determine print format when design is determined
 }
+
+void Nonprofit::setSubcat(std::string subcategory) {
+	this->subcategory = subcategory;
+}
+
+

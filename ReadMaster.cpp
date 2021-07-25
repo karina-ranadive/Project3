@@ -18,13 +18,12 @@ class NPO {
 public:
     string zip;
     int region;
-    long long revenue;
     string name;
     string category;
     string street;
     string state;
     int donations;
-    NPO(string _zip, int _region, string _name, string _category, string _street, string _state, long long _revenue);
+    NPO(string _zip, int _region, string _name, string _category, string _street, string _state);
     /*bool operator < (const NPO& other) const {
         return (region < other.getRegion() || region == other.getRegion() || region > other.getRegion());
     }*/
@@ -32,18 +31,17 @@ public:
         return region;
     }
     string getInfo() const{
-        return "Name: " + name + " Region: " + to_string(region) + " ZipCode: " + zip + " NTEE: " + category + " Street:" + street + " State: " + state + " Revenue: " + to_string(revenue);
+        return "Name: " + name + " Region: " + to_string(region) + " ZipCode: " + zip + " NTEE: " + category + " Street:" + street + " State: " + state;
     }
 };
 
-NPO::NPO(string _zip, int _region, string _name, string _category, string _street, string _state, long long _revenue) {
+NPO::NPO(string _zip, int _region, string _name, string _category, string _street, string _state) {
     zip = _zip;
     region = _region;
     name = _name;
     category = _category;
     street = _street;
     state = _state;
-    revenue = _revenue;
 }
 
 
@@ -109,9 +107,8 @@ void PopulateCharities(vector<NPO>& charities, unordered_map<int, string>& categ
     NTEE = "";
     int region = -1;
     int index = 0;
-    long long revenue = 0;
     getline(in, line, '\n');    //handle header
-    //int count = 0; 
+    
     while (getline(in, line, '\n')) {
         stringstream str(line);
         index = 0;
@@ -130,12 +127,6 @@ void PopulateCharities(vector<NPO>& charities, unordered_map<int, string>& categ
             }
             else if (index == 6)
                 zip = temp;  
-            else if (index == 25) {
-                if (temp == "NA")
-                    revenue = 0;
-                else
-                    revenue = stoll (temp);
-            }
             else if (index == 26) {
                 NTEE = temp;
                 //cout << NTEE << endl;
@@ -162,8 +153,8 @@ void PopulateCharities(vector<NPO>& charities, unordered_map<int, string>& categ
                 NTEE = "Z99";
         }
 
-        charities.push_back(NPO(zip, region, name, NTEE, street, state, revenue));
-        //count++;
+        charities.push_back(NPO(zip, region, name, NTEE, street, state));
+       
     }
     /*
     //print everything in set
@@ -204,16 +195,21 @@ void PopulateCategories(unordered_map<int, string>& categories) {
 
 void WriteFile(vector<NPO>& charities, unordered_map<int, string>& categories) {
     fstream out;
-    out.open("NPOMasterFile.csv", ios::out | ios::app);
-    out << "NAME,STREET,ZIP,STATE,REGION,REVENUE,NTEE" << "\n";
+    out.open("NPOMasterFileFinal.csv", ios::out | ios::app);
+    out << "NAME,STREET,ZIP,STATE,REGION,NTEE" << "\n";
     for (auto iter = charities.begin(); iter != charities.end(); iter++) {
-        out << iter->name << ",";
-        out << iter->street << ",";
-        out << iter->zip << ",";
-        out << iter->state << ",";
-        out << iter->region << ",";
-        out << iter->revenue << ",";
-        out << iter->category << "\n";
+        if (iter->category != "Z99" && !isdigit(iter->category[0])) {
+            out << iter->name << ",";
+            out << iter->street << ",";
+            out << iter->zip << ",";
+            out << iter->state << ",";
+            out << iter->region << ",";
+            if (iter->category[iter->category.size() - 1] == 'Z')
+                iter->category = (iter->category).substr(0, 3);
+            if (iter->category[0] == ' ') 
+                iter->category = (iter->category).substr(1);
+            out << iter->category << "\n";
+        }  
     }
 }
 

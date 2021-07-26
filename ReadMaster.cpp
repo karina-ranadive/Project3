@@ -65,7 +65,8 @@ void PopulateRegions() {
         //read file
         stringstream str(line);
         index = 0;
-        state, region = "";
+        state = "";
+        region = "";
         while (getline(str, temp, ',')) {
             if (index == 0)
                 state = temp;

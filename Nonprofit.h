@@ -13,6 +13,7 @@ class Nonprofit
 	
 	
 public:
+	Nonprofit();
 	Nonprofit(std::string name, std::string street, int zip, std::string state, int region, std::string NTEE);
 	unsigned int matchIndex;
 	bool flag;

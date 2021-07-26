@@ -112,7 +112,7 @@ void::MapClass::PrintPreferences(int region, string state, string street, int zi
         if(iter->second.flag == false){
             continue;
         }
-        if(count = 101){
+        if(count == 101){
             break;
         }
         iter->second.printNonprofit();

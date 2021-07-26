@@ -11,6 +11,9 @@ Nonprofit::Nonprofit(std::string name, std::string street, int zip, std::string 
 	bool flag = true;
 	
 }
+Nonprofit::Nonprofit(){
+	
+}
 
 std::string Nonprofit::getStreet() {
 	return street;

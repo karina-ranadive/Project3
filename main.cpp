@@ -7,7 +7,7 @@
 
 int main(){
 
-	vector<pair<int, MapClass>> maps;
+	vector<pair <int, MapClass> > maps;
 	MapClass a = MapClass("Arts, Culture & Humanities");
 	maps.push_back(make_pair(1, a));
 	MapClass b = MapClass("Education");
@@ -181,7 +181,7 @@ int main(){
 			}
 			count++;
 		}
-		if(count = 9){
+		if(count == 9){
 			cout << "The nonprofit you are looking for cannot be found in our database." << endl;
 		}
 
@@ -218,10 +218,12 @@ int main(){
 		}
 
 	}
+	
 
-	for(unsigned int i = 0. i < maps.size(); i++){
+	for(unsigned int i = 0; i < maps.size(); i++){
 		maps[i].second.ResetNonProfitVars();
 	}
+	
 	
 	
 	

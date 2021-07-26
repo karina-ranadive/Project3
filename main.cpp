@@ -2,8 +2,10 @@
 #include "Nonprofit.h"
 #include <fstream>
 #include <sstream>
+#include <iostream>
 #include <string>
 #include <vector>
+using namespace std;
 
 int main(){
 
@@ -193,29 +195,30 @@ int main(){
 		cout << "Fill out preferences for nonprofits and if you do not have a preference, press enter on your keyboard" << endl;
 		cout << "Based on your preferences, we will list out nonprofits related to your preferences!" << endl;
 		cout << "Preference for Category: " << endl;
-		int category;
-		cin >> category;
-		cout << endl;
+		string cat;
+		getline(cin, cat);
+		int category = stoi(cat);
 		cout << "Preference for region: " << endl;
-		int region;
-		cin >> region; 
+		string reg;
+		getline(cin, reg);
+		int region = stoi(reg);
 		cout << endl;
 		cout << "Preference for state: " << endl;
 		string state;
-		cin >> state;
+		getline(cin, state);
 		cout << endl;
 		cout << "Preference for Street Address: " << endl;
 		string street;
-		cin >> street;
+		getline(cin, street);
 		cout << endl;
 		cout << "Preference for Zip Code: " << endl;
-		int zip;
-		cin >> zip;
+		string zipCode;
+		getline(cin, zipCode);
+		int zip = stoi(zipCode);
 		cout << endl;
 		cout << "Preference for Sub-Category: " << endl;
 		string subcat;
-		cout << endl;
-		cin >> subcat;
+		getline(cin, subcat);
 		cout << endl;
 	
 		for(unsigned int i = 0; i < maps.size(); i++){

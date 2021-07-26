@@ -27,7 +27,7 @@ int main(){
 	MapClass y = MapClass("Mutual/Membership Benefit");
 	maps.push_back(make_pair(9, y));
 
-	ifstream inFile("NPOMasterFile.csv");
+	ifstream inFile("NPOMasterFileFinal.csv");
 
 	if (inFile.is_open()) {
 		string lineFromFile;

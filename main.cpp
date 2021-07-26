@@ -192,24 +192,31 @@ int main(){
 	else{
 		cout << "Fill out preferences for nonprofits and if you do not have a preference, press enter on your keyboard" << endl;
 		cout << "Based on your preferences, we will list out nonprofits related to your preferences!" << endl;
-		cout << "Preference for Category: ";
+		cout << "Preference for Category: " << endl;
 		int category;
 		cin >> category;
-		cout << "Preference for region: ";
+		cout << endl;
+		cout << "Preference for region: " << endl;
 		int region;
 		cin >> region; 
-		cout << "Preference for state: ";
+		cout << endl;
+		cout << "Preference for state: " << endl;
 		string state;
 		cin >> state;
-		cout << "Preference for Street Address: ";
+		cout << endl;
+		cout << "Preference for Street Address: " << endl;
 		string street;
 		cin >> street;
-		cout << "Preference for Zip Code: ";
+		cout << endl;
+		cout << "Preference for Zip Code: " << endl;
 		int zip;
 		cin >> zip;
-		cout << "Preference for Sub-Category: ";
+		cout << endl;
+		cout << "Preference for Sub-Category: " << endl;
 		string subcat;
+		cout << endl;
 		cin >> subcat;
+		cout << endl;
 	
 		for(unsigned int i = 0; i < maps.size(); i++){
 			if(category == maps[i].first){

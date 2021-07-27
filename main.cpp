@@ -9,25 +9,25 @@ using namespace std;
 
 int main(){
 
-	vector<pair <int, MapClass> > maps;
+	vector<pair <int, MapClass*> > maps;
 	MapClass a = MapClass("Arts, Culture & Humanities");
-	maps.push_back(make_pair(1, a));
+	maps.push_back(make_pair(1, a.ptr));
 	MapClass b = MapClass("Education");
-	maps.push_back(make_pair(2, b));
+	maps.push_back(make_pair(2, b.ptr));
 	MapClass cd = MapClass("Environment and Animals");
-	maps.push_back(make_pair(3, cd));
+	maps.push_back(make_pair(3, cd.ptr));
 	MapClass eh = MapClass("Health");
-	maps.push_back(make_pair(4, eh));
+	maps.push_back(make_pair(4, eh.ptr));
 	MapClass ip = MapClass("Human Services");
-	maps.push_back(make_pair(5, ip));
+	maps.push_back(make_pair(5, ip.ptr));
 	MapClass q = MapClass("International, Foreign Affairs");
-	maps.push_back(make_pair(6, q));
+	maps.push_back(make_pair(6, q.ptr));
 	MapClass rw = MapClass("Public, Societal Benefit");
-	maps.push_back(make_pair(7, rw));
+	maps.push_back(make_pair(7, rw.ptr));
 	MapClass x = MapClass("Religion Related");
-	maps.push_back(make_pair(8, x));
+	maps.push_back(make_pair(8, x.ptr));
 	MapClass y = MapClass("Mutual/Membership Benefit");
-	maps.push_back(make_pair(9, y));
+	maps.push_back(make_pair(9, y.ptr));
 
 	ifstream inFile("NPOMasterFileFinal.csv");
 
@@ -165,6 +165,9 @@ int main(){
 
 	//--------------------------------------------MAP USER IMPLEMENTATION-----------------------------------------------
 
+	cout << a.getSize() << endl;
+    y.PrintByName("BENEVOLENT & PROTECTIVE ORDER OF ELKS OF THE USA");
+	
 	cout << "Would you like to Search By Name or by Preferences?" << endl;
 	string choice;
 	cin >> choice;
@@ -176,6 +179,7 @@ int main(){
 		cin >> name;
 		cout << "Loading Results..." << endl;
 		int count = 0;
+		/*
 		for(unsigned int i = 0; i < maps.size(); i++){
 			if(maps[i].second.FindName(name) == true){
 				maps[i].second.PrintbyName(name);
@@ -183,6 +187,7 @@ int main(){
 			}
 			count++;
 		}
+		*/
 		if(count == 9){
 			cout << "The nonprofit you are looking for cannot be found in our database." << endl;
 		}
@@ -220,24 +225,24 @@ int main(){
 		string subcat;
 		getline(cin, subcat);
 		cout << endl;
+
+
+		/*
 	
 		for(unsigned int i = 0; i < maps.size(); i++){
 			if(category == maps[i].first){
 				maps[i].second.PrintPreferences(region, state, street, zip, subcat);
 			}
 		}
+		*/
 
 	}
 	
-
+	/*
 	for(unsigned int i = 0; i < maps.size(); i++){
 		maps[i].second.ResetNonProfitVars();
 	}
-	
-	
-	
-	
 
-
+	*/
 
 }

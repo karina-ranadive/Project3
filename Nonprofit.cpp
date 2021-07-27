@@ -1,50 +1,51 @@
 #include "Nonprofit.h"
 
 Nonprofit::Nonprofit(std::string name, std::string street, int zip, std::string state, int region, std::string NTEE) {
-	this->name = name;
-	this->street = street;
-	this->zip = zip;
-	this->state = state;
-	this->region = region;
-	this->NTEE = NTEE;
-	matchIndex = 0;
-	bool flag = true;
-	
+    this->name = name;
+    this->street = street;
+    this->zip = zip;
+    this->state = state;
+    this->region = region;
+    this->NTEE = NTEE;
+    matchIndex = 0;
+    flag = true;
+
 }
 Nonprofit::Nonprofit(){
-	
+
 }
 
 std::string Nonprofit::getStreet() {
-	return street;
+    return street;
 }
 
 int Nonprofit::getZip() {
-	return zip;
+    return zip;
 }
 
 std::string Nonprofit::getState() {
-	return state;
+    return state;
 }
 
 int Nonprofit::getRegion() {
-	return region;
+    return region;
 }
 
 std::string Nonprofit::getNTEE() {
-	return NTEE;
+    return NTEE;
 }
 
 std::string Nonprofit::getSubCat() {
-	return subcategory;
+    return subcategory;
 }
 
 void Nonprofit::printNonprofit() {
-	// determine print format when design is determined
+    std::cout << name  << " " << matchIndex << std::endl;
+
 }
 
 void Nonprofit::setSubcat(std::string subcategory) {
-	this->subcategory = subcategory;
+    this->subcategory = subcategory;
 }
 
 

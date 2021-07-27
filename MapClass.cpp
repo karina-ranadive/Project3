@@ -3,10 +3,15 @@
 
 MapClass::MapClass(string category){
     this->category = category;
+    this->counter = 0;
+    ptr = nullptr;
 }
+MapClass::MapClass(){
 
+}
 void MapClass::InsertIntoMap(string name, Nonprofit obj){
     orgs[name] = obj;
+
 
 }
 
@@ -81,6 +86,14 @@ int::MapClass::FindHighestMatchIndex(){
     }
     return num;
 }
+int::MapClass::getSize(){
+    return orgs.size();
+}
+void::MapClass::Print(){
+    for(iter = orgs.begin(); iter!=orgs.end(); ++iter){
+        cout << iter->first << endl;
+    }
+}
 
 void::MapClass::PrintPreferences(int region, string state, string street, int zipCode, string subcat){
     if(region != 0){
@@ -99,34 +112,41 @@ void::MapClass::PrintPreferences(int region, string state, string street, int zi
         SearchSubCat(subcat);
     }
 
-    map<int, Nonprofit> matches;
-    map<int, Nonprofit>::reverse_iterator it;
-
-    for(iter = orgs.begin(); iter!=orgs.end(); ++iter){
-        if(iter->second.matchIndex!=0){
-            matches[iter->second.matchIndex] = iter->second;
-        }
-    }
-    int count = 0;
-    for(it = matches.rbegin(); it!=matches.rend(); ++it){
-        if(iter->second.flag == false){
-            continue;
-        }
-        if(count == 101){
-            break;
-        }
-        iter->second.printNonprofit();
-        count++;
-    }
+    PrintRemaining();
 
 
 }
 
-void::MapClass::PrintbyName(string name){
+void::MapClass::PrintMatchIndex(int number){
+    for(iter = orgs.begin(); iter!=orgs.end(); ++iter){
+        if(counter == 100) {
+            break;
+        }
+        if(iter->second.matchIndex == number && iter->second.flag == true){
+            counter++;
+            iter->second.printNonprofit();
+        }
+    }
+
+}
+void::MapClass::PrintRemaining(){
+    int highest = FindHighestMatchIndex();
+        for(unsigned int i = highest; i > 0; i--){
+            if(counter < 100)
+                PrintMatchIndex(i);
+
+        }
+
+
+}
+
+
+
+void::MapClass::PrintByName(string name){
     for(iter = orgs.begin(); iter!=orgs.end(); ++iter){
         if(iter->first == name){
-            iter->second.printNonprofit();
-            iter->second.flag = false;
+            //iter->second.printNonprofit();
+            iter->second.flag = true;
             PrintPreferences(iter->second.getRegion(), iter->second.getState(), iter->second.getStreet(), iter->second.getZip(), iter->second.getSubCat());
         }
     }

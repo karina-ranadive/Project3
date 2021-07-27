@@ -125,7 +125,7 @@ int main(){
 				ip.InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("Q") == 0) {
-				n.setSubcat("International, Foreign Affairs & National Security");
+				n.setSubcat("International, Foreign Affairs");
 				q.InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("R") == 0) {
@@ -153,11 +153,11 @@ int main(){
 				rw.InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("X") == 0) {
-				n.setSubcat("Religion-Related");
+				n.setSubcat("Religion Related");
 				x.InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("Y") == 0) {
-				n.setSubcat("Mutual & Membership Benefit");
+				n.setSubcat("Mutual/Membership Benefit");
 				y.InsertIntoMap(name, n);
 			}
 		}
@@ -165,79 +165,136 @@ int main(){
 
 	//--------------------------------------------MAP USER IMPLEMENTATION-----------------------------------------------
 
-	cout << "Would you like to Search By Name or by Preferences?" << endl;
-	string choice;
-	cin >> choice;
+	int choice = -1;
+	while (choice != 0) {
+		cout << "Would you like to Search By Name(1) or by Preferences(2)? (0 to exit) ";
+		string choiceString;
+		cin >> choiceString;
+		choice = stoi(choiceString);
 
-	//Search By Name
-	if(choice == "Name"){
-		cout << "What is the name of the nonprofit your are looking for?" << endl;
-		string name;
-		cin >> name;
-		cout << "Loading Results..." << endl;
-		int count = 0;
-		for(unsigned int i = 0; i < maps.size(); i++){
-			if(maps[i].second.FindName(name) == true){
-				maps[i].second.PrintbyName(name);
-				break;
+		//Search By Name
+		if (choice == 1) {
+			cout << "What is the name of the nonprofit your are looking for? ";
+			string name;
+			cin >> name;
+			cout << endl << "Loading Results..." << endl;
+			int count = 0;
+			for (unsigned int i = 0; i < maps.size(); i++) {
+				if (maps[i].second.FindName(name) == true) {
+					maps[i].second.PrintbyName(name);
+					break;
+				}
+				count++;
 			}
-			count++;
+			if (count == 9) {
+				cout << "The nonprofit you are looking for cannot be found in our database." << endl;
+			}
+			cout << endl;
 		}
-		if(count == 9){
-			cout << "The nonprofit you are looking for cannot be found in our database." << endl;
-		}
+		//Search Solely by Preferences 
+		else if (choice == 2) {
+			cout << endl;
+			cout << "Fill out preferences for nonprofits and if you do not have a preference, press enter on your keyboard" << endl;
+			cout << "Based on your preferences, we will list out nonprofits related to your preferences!" << endl;
 
-	
-	}
-	
-	//Search Solely by Preferences 
-	else{
-		cout << "Fill out preferences for nonprofits and if you do not have a preference, press enter on your keyboard" << endl;
-		cout << "Based on your preferences, we will list out nonprofits related to your preferences!" << endl;
-		cout << "Preference for Category: " << endl;
-		string cat;
-		getline(cin, cat);
-		int category = stoi(cat);
-		cout << "Preference for region: " << endl;
-		string reg;
-		getline(cin, reg);
-		int region = stoi(reg);
-		cout << endl;
-		cout << "Preference for state: " << endl;
-		string state;
-		getline(cin, state);
-		cout << endl;
-		cout << "Preference for Street Address: " << endl;
-		string street;
-		getline(cin, street);
-		cout << endl;
-		cout << "Preference for Zip Code: " << endl;
-		string zipCode;
-		getline(cin, zipCode);
-		int zip = stoi(zipCode);
-		cout << endl;
-		cout << "Preference for Sub-Category: " << endl;
-		string subcat;
-		getline(cin, subcat);
-		cout << endl;
-	
-		for(unsigned int i = 0; i < maps.size(); i++){
-			if(category == maps[i].first){
-				maps[i].second.PrintPreferences(region, state, street, zip, subcat);
+			cout << endl << "1. Arts, Culture & Humanities" << endl;
+			cout << "2. Education" << endl;
+			cout << "3. Environment and Animals" << endl;
+			cout << "4. Health" << endl;
+			cout << "5. Human Services" << endl;
+			cout << "6. International, Foreign Affairs" << endl;
+			cout << "7. Public, Societal Benefit" << endl;
+			cout << "8. Religion Related" << endl;
+			cout << "9. Mutual/Membership Benefit" << endl;
+			cout << "-------------------------------------" << endl;
+			cout << "Preference for Category (Please enter corresponding number): ";
+			string temp;
+			getline(cin, temp);
+			string cat;
+			getline(cin, cat);
+			int category = stoi(cat);
+
+			cout << endl;
+			string subcat;
+			int subcategory;
+			if (category == 1 || category == 2 || category == 6 || category == 8 || category == 9) {
+				subcategory = category;
+			}
+			else {
+				if (category == 3) {
+					cout << "1. Environment" << endl;
+					cout << "2. Animal-Related" << endl;
+				}
+				else if (category == 4) {
+					cout << "1. Health Care" << endl;
+					cout << "2. Mental Health & Crisis Intervention" << endl;
+					cout << "3. Voluntary Health Associations & Medical Disciplines" << endl;
+					cout << "4. Medical Research" << endl;
+				}
+				else if (category == 5) {
+					cout << "1. Crime & Legal-Related" << endl;
+					cout << "2. Employment" << endl;
+					cout << "3. Food, Agriculture & Nutrition" << endl;
+					cout << "4. Housing & Shelter" << endl;
+					cout << "5. Public Safety, Disaster Preparedness & Relief" << endl;
+					cout << "6. Recreation & Sports" << endl;
+					cout << "7. Youth Development" << endl;
+					cout << "8. Human Services" << endl;
+				}
+				else if (category == 7) {
+					cout << "1. Civil Rights, Social Action & Advocacy" << endl;
+					cout << "2. Community Improvement & Capacity Building" << endl;
+					cout << "3. Philanthropy, Voluntarism & Grantmaking Foundations" << endl;
+					cout << "4. Science & Technology" << endl;
+					cout << "5. Social Science" << endl;
+					cout << "6. Public & Societal Benefit" << endl;
+				}
+				cout << "-------------------------------------" << endl;
+				cout << "Preference for Sub-Category: ";
+				getline(cin, subcat);
+				subcategory = stoi(subcat);
+				cout << endl;
+			}
+
+			cout << "0. New England" << endl;
+			cout << "1. Mid-Atlantic" << endl;
+			cout << "3. South Atlantic" << endl;
+			cout << "4. East North Central" << endl;
+			cout << "5. West North Central" << endl;
+			cout << "6. East South Central" << endl;
+			cout << "7. West South Central" << endl;
+			cout << "8. Mountain" << endl;
+			cout << "9. Pacific" << endl;
+			cout << "-------------------------------------" << endl;
+			cout << "Preference for region: ";
+			string reg;
+			getline(cin, reg);
+			int region = stoi(reg);
+
+			cout << endl << "Preference for state: ";
+			string state;
+			getline(cin, state);
+
+			cout << "Preference for Street Address: ";
+			string street;
+			getline(cin, street);
+
+			cout << "Preference for Zip Code: ";
+			string zipCode;
+			getline(cin, zipCode);
+			int zip = stoi(zipCode);
+			cout << endl;
+
+			for (unsigned int i = 0; i < maps.size(); i++) {
+				if (category == maps[i].first) {
+					maps[i].second.PrintPreferences(region, state, street, zip, subcat);
+				}
 			}
 		}
 
+
+		for (unsigned int i = 0; i < maps.size(); i++) {
+			maps[i].second.ResetNonProfitVars();
+		}
 	}
-	
-
-	for(unsigned int i = 0; i < maps.size(); i++){
-		maps[i].second.ResetNonProfitVars();
-	}
-	
-	
-	
-	
-
-
-
 }

@@ -1,11 +1,7 @@
 #include "MapClass.h"
-#include "Nonprofit.h"
 #include <fstream>
 #include <sstream>
-#include <iostream>
-#include <string>
 #include <vector>
-using namespace std;
 
 int main(){
 
@@ -187,8 +183,10 @@ int main(){
 		//Search By Name
 		if (choice == 1) {
 			cout << "What is the name of the nonprofit your are looking for? ";
+			string temp;
+			getline(cin, temp);
 			string name;
-			cin >> name;
+			getline(cin, name);
 			cout << endl << "Loading Results..." << endl;
 			int count = 0;
 			for (unsigned int i = 0; i < maps.size(); i++) {

@@ -6,13 +6,13 @@ MapClass::MapClass(string category){
     this->counter = 0;
     ptr = nullptr;
 }
+
 MapClass::MapClass(){
 
 }
+
 void MapClass::InsertIntoMap(string name, Nonprofit obj){
     orgs[name] = obj;
-
-
 }
 
 void MapClass::SearchRegion(int region){
@@ -55,6 +55,7 @@ void MapClass::SearchStreet(string street){
         }
     }
 }
+
 void MapClass::SearchZip(int zipCode){
     for(iter = orgs.begin(); iter!=orgs.end(); ++iter){
         if(iter->second.getZip() == zipCode){
@@ -62,6 +63,7 @@ void MapClass::SearchZip(int zipCode){
         }
     }
 }
+
 void MapClass::SearchCause(string ntee){
     for(iter = orgs.begin(); iter!=orgs.end(); ++iter){
         if(iter->second.getNTEE() == ntee){
@@ -77,7 +79,8 @@ void MapClass::SearchSubCat(string subcategory){
         }
     }
 }
-int::MapClass::FindHighestMatchIndex(){
+
+int MapClass::FindHighestMatchIndex(){
     int num = -1;
     for(iter = orgs.begin(); iter!=orgs.end(); ++iter){
         if(iter->second.matchIndex > num){
@@ -86,16 +89,18 @@ int::MapClass::FindHighestMatchIndex(){
     }
     return num;
 }
-int::MapClass::getSize(){
+
+int MapClass::getSize(){
     return orgs.size();
 }
-void::MapClass::Print(){
+
+void MapClass::Print(){
     for(iter = orgs.begin(); iter!=orgs.end(); ++iter){
         cout << iter->first << endl;
     }
 }
 
-void::MapClass::PrintPreferences(int region, string state, int zipCode, string subcat){
+void MapClass::PrintPreferences(int region, string state, int zipCode, string subcat){
     if(region != 0){
         SearchRegion(region);
     }
@@ -115,7 +120,7 @@ void::MapClass::PrintPreferences(int region, string state, int zipCode, string s
 
 }
 
-void::MapClass::PrintMatchIndex(int number){
+void MapClass::PrintMatchIndex(int number){
     for(iter = orgs.begin(); iter!=orgs.end(); ++iter){
         if(counter == 100) {
             break;
@@ -127,7 +132,8 @@ void::MapClass::PrintMatchIndex(int number){
     }
 
 }
-void::MapClass::PrintRemaining(){
+
+void MapClass::PrintRemaining(){
     int highest = FindHighestMatchIndex();
         for(unsigned int i = highest; i > 0; i--){
             if(counter < 100)
@@ -138,9 +144,7 @@ void::MapClass::PrintRemaining(){
 
 }
 
-
-
-void::MapClass::PrintByName(string name){
+void MapClass::PrintByName(string name){
     for(iter = orgs.begin(); iter!=orgs.end(); ++iter){
         if(iter->first == name){
             PrintPreferences(iter->second.getRegion(), iter->second.getState(), iter->second.getZip(), iter->second.getSubCat());
@@ -148,7 +152,7 @@ void::MapClass::PrintByName(string name){
     }
 }
 
-void::MapClass::ResetNonProfitVars(){
+void MapClass::ResetNonProfitVars(){
     for(iter = orgs.begin(); iter!=orgs.end(); ++iter){
         iter->second.matchIndex = false;
     }

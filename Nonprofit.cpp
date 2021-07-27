@@ -11,6 +11,7 @@ Nonprofit::Nonprofit(std::string name, std::string street, int zip, std::string 
     
 
 }
+
 Nonprofit::Nonprofit(){
 
 }

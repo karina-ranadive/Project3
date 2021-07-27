@@ -95,20 +95,18 @@ void::MapClass::Print(){
     }
 }
 
-void::MapClass::PrintPreferences(int region, string state, string street, int zipCode, string subcat){
+void::MapClass::PrintPreferences(int region, string state, int zipCode, string subcat){
     if(region != 0){
         SearchRegion(region);
     }
     if(state!=""){
         SearchState(state);
     }
-    if(street != ""){
-        SearchStreet(street);
-    }
+    
     if(zipCode!=0){
         SearchZip(zipCode);
     }
-    if(subcat!=""){
+    if(subcat!= ""){
         SearchSubCat(subcat);
     }
 
@@ -122,7 +120,7 @@ void::MapClass::PrintMatchIndex(int number){
         if(counter == 100) {
             break;
         }
-        if(iter->second.matchIndex == number && iter->second.flag == true){
+        if(iter->second.matchIndex == number){
             counter++;
             iter->second.printNonprofit();
         }
@@ -145,16 +143,13 @@ void::MapClass::PrintRemaining(){
 void::MapClass::PrintByName(string name){
     for(iter = orgs.begin(); iter!=orgs.end(); ++iter){
         if(iter->first == name){
-            //iter->second.printNonprofit();
-            iter->second.flag = true;
-            PrintPreferences(iter->second.getRegion(), iter->second.getState(), iter->second.getStreet(), iter->second.getZip(), iter->second.getSubCat());
+            PrintPreferences(iter->second.getRegion(), iter->second.getState(), iter->second.getZip(), iter->second.getSubCat());
         }
     }
 }
 
 void::MapClass::ResetNonProfitVars(){
     for(iter = orgs.begin(); iter!=orgs.end(); ++iter){
-        iter->second.flag = true;
         iter->second.matchIndex = false;
     }
 }

@@ -23,7 +23,6 @@ public:
     Nonprofit();
     Nonprofit(std::string name, std::string street, int zip, std::string state, int region, std::string NTEE);
     int matchIndex;
-    bool flag;
     std::string getStreet();
     int getZip();
     std::string getState();

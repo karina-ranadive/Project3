@@ -34,7 +34,7 @@ public:
     void PrintMatchIndex(int number);
     void Print();
     void PrintRemaining();
-    void PrintPreferences(int region, string state, string street, int zipCode, string subcat);
+    void PrintPreferences(int region, string state, int zipCode, string subcat);
     void PrintByName(string name);
     void ResetNonProfitVars();
 

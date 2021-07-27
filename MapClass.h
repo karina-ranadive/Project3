@@ -1,12 +1,4 @@
-//
-// Created by Karina Ranadive on 7/26/21.
-//
-
-#ifndef PROJECT3TESTING_MAPCLASS_H
-#define PROJECT3TESTING_MAPCLASS_H
 #include <map>
-#pragma once
-#include <iostream>
 #include "Nonprofit.h"
 using namespace std;
 
@@ -39,5 +31,3 @@ public:
     void ResetNonProfitVars();
 
 };
-
-#endif //PROJECT3TESTING_MAPCLASS_H

@@ -1,10 +1,3 @@
-//
-// Created by Karina Ranadive on 7/26/21.
-//
-
-#ifndef PROJECT3TESTING_NONPROFIT_H
-#define PROJECT3TESTING_NONPROFIT_H
-#pragma once
 #include <string>
 #include <iostream>
 
@@ -27,12 +20,8 @@ public:
     int getZip();
     std::string getState();
     int getRegion();
-    int getRevenue();
     std::string getNTEE();
     std::string getSubCat();
     void printNonprofit();
     void setSubcat(std::string subcategory);
 };
-
-
-#endif //PROJECT3TESTING_NONPROFIT_H

@@ -9,24 +9,24 @@ using namespace std;
 
 int main(){
 
-	vector<pair <int, MapClass> > maps;
-	MapClass a = MapClass("Arts, Culture & Humanities");
+	vector<pair <int, MapClass*> > maps;
+	MapClass* a = new MapClass("Arts, Culture & Humanities");
 	maps.push_back(make_pair(1, a));
-	MapClass b = MapClass("Education");
+	MapClass* b = new MapClass("Education");
 	maps.push_back(make_pair(2, b));
-	MapClass cd = MapClass("Environment and Animals");
+	MapClass* cd = new MapClass("Environment and Animals");
 	maps.push_back(make_pair(3, cd));
-	MapClass eh = MapClass("Health");
+	MapClass* eh = new MapClass("Health");
 	maps.push_back(make_pair(4, eh));
-	MapClass ip = MapClass("Human Services");
+	MapClass* ip = new MapClass("Human Services");
 	maps.push_back(make_pair(5, ip));
-	MapClass q = MapClass("International, Foreign Affairs");
+	MapClass* q = new MapClass("International, Foreign Affairs");
 	maps.push_back(make_pair(6, q));
-	MapClass rw = MapClass("Public, Societal Benefit");
+	MapClass* rw = new MapClass("Public, Societal Benefit");
 	maps.push_back(make_pair(7, rw));
-	MapClass x = MapClass("Religion Related");
+	MapClass* x = new MapClass("Religion Related");
 	maps.push_back(make_pair(8, x));
-	MapClass y = MapClass("Mutual/Membership Benefit");
+	MapClass* y = new MapClass("Mutual/Membership Benefit");
 	maps.push_back(make_pair(9, y));
 
 	ifstream inFile("NPOMasterFileFinal.csv");
@@ -62,103 +62,103 @@ int main(){
 			 
 			if (NTEE.substr(0, 1).compare("A") == 0) {
 				n.setSubcat("Arts, Culture & Humanties");
-				a.InsertIntoMap(name, n);
+				a->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("B") == 0) {
 				n.setSubcat("Education");
-				b.InsertIntoMap(name, n);
+				b->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("C") == 0) {
 				n.setSubcat("Environment");
-				cd.InsertIntoMap(name, n);
+				cd->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("D") == 0) {
 				n.setSubcat("Animal-Related");
-				cd.InsertIntoMap(name, n);
+				cd->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("E") == 0) {
 				n.setSubcat("Health Care");
-				eh.InsertIntoMap(name, n);
+				eh->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("F") == 0) {
 				n.setSubcat("Mental Health & Crisis Intervention");
-				eh.InsertIntoMap(name, n);
+				eh->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("G") == 0) {
 				n.setSubcat("Voluntary Health Associations & Medical Discipliness");
-				eh.InsertIntoMap(name, n);
+				eh->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("H") == 0) {
 				n.setSubcat("Medical Research");
-				eh.InsertIntoMap(name, n);
+				eh->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("I") == 0) {
 				n.setSubcat("Crime & Legal-Related");
-				ip.InsertIntoMap(name, n);
+				ip->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("J") == 0) {
 				n.setSubcat("Employment");
-				ip.InsertIntoMap(name, n);
+				ip->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("K") == 0) {
 				n.setSubcat("Food, Agriculture & Nutrition");
-				ip.InsertIntoMap(name, n);
+				ip->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("L") == 0) {
 				n.setSubcat("Housing & Shelter");
-				ip.InsertIntoMap(name, n);
+				ip->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("M") == 0) {
 				n.setSubcat("Public Safety, Disaster Preparedness & Relief");
-				ip.InsertIntoMap(name, n);
+				ip->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("N") == 0) {
 				n.setSubcat("Recreation & Sports");
-				ip.InsertIntoMap(name, n);
+				ip->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("O") == 0) {
 				n.setSubcat("Youth Development");
-				ip.InsertIntoMap(name, n);
+				ip->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("P") == 0) {
 				n.setSubcat("Human Services");
-				ip.InsertIntoMap(name, n);
+				ip->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("Q") == 0) {
 				n.setSubcat("International, Foreign Affairs");
-				q.InsertIntoMap(name, n);
+				q->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("R") == 0) {
 				n.setSubcat("Civil Rights, Social Action & Advocacy");
-				rw.InsertIntoMap(name, n);
+				rw->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("S") == 0) {
 				n.setSubcat("Community Improvement & Capacity Building");
-				rw.InsertIntoMap(name, n);
+				rw->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("T") == 0) {
 				n.setSubcat("Philanthropy, Voluntarism & Grantmaking Foundations");
-				rw.InsertIntoMap(name, n);
+				rw->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("U") == 0) {
 				n.setSubcat("Science & Technology");
-				rw.InsertIntoMap(name, n);
+				rw->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("V") == 0) {
 				n.setSubcat("Social Science");
-				rw.InsertIntoMap(name, n);
+				rw->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("W") == 0) {
 				n.setSubcat("Public & Societal Benefit");
-				rw.InsertIntoMap(name, n);
+				rw->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("X") == 0) {
 				n.setSubcat("Religion Related");
-				x.InsertIntoMap(name, n);
+				x->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("Y") == 0) {
 				n.setSubcat("Mutual/Membership Benefit");
-				y.InsertIntoMap(name, n);
+				y->InsertIntoMap(name, n);
 			}
 		}
 	} 
@@ -180,8 +180,8 @@ int main(){
 			cout << endl << "Loading Results..." << endl;
 			int count = 0;
 			for (unsigned int i = 0; i < maps.size(); i++) {
-				if (maps[i].second.FindName(name) == true) {
-					maps[i].second.PrintbyName(name);
+				if (maps[i].second->FindName(name) == true) {
+					maps[i].second->PrintbyName(name);
 					break;
 				}
 				count++;
@@ -275,10 +275,6 @@ int main(){
 			string state;
 			getline(cin, state);
 
-			cout << "Preference for Street Address: ";
-			string street;
-			getline(cin, street);
-
 			cout << "Preference for Zip Code: ";
 			string zipCode;
 			getline(cin, zipCode);
@@ -287,14 +283,14 @@ int main(){
 
 			for (unsigned int i = 0; i < maps.size(); i++) {
 				if (category == maps[i].first) {
-					maps[i].second.PrintPreferences(region, state, street, zip, subcat);
+					maps[i].second->PrintPreferences(region, state, zip, subcat);
 				}
 			}
 		}
 
 
 		for (unsigned int i = 0; i < maps.size(); i++) {
-			maps[i].second.ResetNonProfitVars();
+			maps[i].second->ResetNonProfitVars();
 		}
 	}
 }

@@ -8,8 +8,8 @@ Nonprofit::Nonprofit(std::string name, std::string street, int zip, std::string 
     this->region = region;
     this->NTEE = NTEE;
     matchIndex = 0;
-    
-
+    left = nullptr;
+    right = nullptr;
 }
 
 Nonprofit::Nonprofit(){

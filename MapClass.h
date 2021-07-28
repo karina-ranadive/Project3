@@ -22,12 +22,12 @@ public:
     void SearchStreet(string street);
     void SearchZip(int zip);
     void SearchCause(string ntee);
-    void SearchSubCat(string subcategory);
+    void SearchSubCat(int subcategory);
     int FindHighestMatchIndex();
     void PrintMatchIndex(int number);
     void Print();
     void PrintRemaining();
-    void PrintPreferences(int region, string state, int zipCode, string subcat);
+    void PrintPreferences(int region, string state, int zipCode, int subcat);
     void PrintByName(string name);
     void ResetNonProfitVars();
     map<string, Nonprofit>& GetMap();

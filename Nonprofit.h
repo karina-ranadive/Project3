@@ -23,6 +23,7 @@ public:
     std::string getState();
     int getRegion();
     std::string getNTEE();
+    int getSubCatInt();
     std::string getSubCat();
     void printNonprofit();
     void setSubcat(std::string subcategory);

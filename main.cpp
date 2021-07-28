@@ -308,7 +308,7 @@ int main(){
 			if (choice == 1) {
 				for (unsigned int i = 0; i < maps.size(); i++) {
 					if (category == maps[i].first) {
-						maps[i].second->PrintPreferences(region, state, zip, subcat);
+						maps[i].second->PrintPreferences(region, state, zip, subcategory);
 					}
 				}
 			}

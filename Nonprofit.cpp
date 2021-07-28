@@ -36,8 +36,12 @@ std::string Nonprofit::getNTEE() {
     return NTEE;
 }
 
-std::string Nonprofit::getSubCat() {
-    return subcategory;
+int Nonprofit::getSubCatInt() {
+    return this->subcatNum;
+}
+
+std::string Nonprofit::getSubCat(){
+    return this->subcategory;
 }
 
 void Nonprofit::printNonprofit() {

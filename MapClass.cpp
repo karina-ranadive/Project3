@@ -72,9 +72,9 @@ void MapClass::SearchCause(string ntee){
     }
 }
 
-void MapClass::SearchSubCat(string subcategory){
+void MapClass::SearchSubCat(int subcategory){
     for(iter = orgs.begin(); iter!=orgs.end(); ++iter){
-        if(iter->second.getSubCat() == subcategory){
+        if(iter->second.getSubCatInt() == subcategory){
             iter->second.matchIndex++;
         }
     }
@@ -100,7 +100,7 @@ void MapClass::Print(){
     }
 }
 
-void MapClass::PrintPreferences(int region, string state, int zipCode, string subcat){
+void MapClass::PrintPreferences(int region, string state, int zipCode, int subcat){
     if(region != -1){
         SearchRegion(region);
     }
@@ -111,7 +111,7 @@ void MapClass::PrintPreferences(int region, string state, int zipCode, string su
     if(zipCode!= -1){
         SearchZip(zipCode);
     }
-    if(subcat!= ""){
+    if(subcat!= -1){
         SearchSubCat(subcat);
     }
 
@@ -147,7 +147,7 @@ void MapClass::PrintRemaining(){
 void MapClass::PrintByName(string name){
     for(iter = orgs.begin(); iter!=orgs.end(); ++iter){
         if(iter->first == name){
-            PrintPreferences(iter->second.getRegion(), iter->second.getState(), iter->second.getZip(), iter->second.getSubCat());
+            PrintPreferences(iter->second.getRegion(), iter->second.getState(), iter->second.getZip(), iter->second.getSubCatInt());
         }
     }
 }

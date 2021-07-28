@@ -49,4 +49,23 @@ void Nonprofit::setSubcat(std::string subcategory) {
     this->subcategory = subcategory;
 }
 
+void Nonprofit::setSubcat(std::string subcategory, int subcatNum) {
+    this->subcategory = subcategory;
+    this->subcatNum = subcatNum;
+}
 
+void Nonprofit::setSubcat(int subcatNum) {
+    this->subcatNum = subcatNum;    //create a map for subcat nums -> subcat names
+}
+
+std::string Nonprofit::getName() {
+    return name;
+}
+
+bool operator < (const Nonprofit& lhs, const Nonprofit& rhs) {
+    return lhs.matchIndex < rhs.matchIndex;
+}
+bool operator > (const Nonprofit& lhs, const Nonprofit& rhs) {
+    return lhs.matchIndex > rhs.matchIndex;
+
+}

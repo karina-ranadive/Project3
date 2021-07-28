@@ -12,12 +12,12 @@ class Nonprofit
     std::string NTEE;
     std::string subcategory;
     int subcatNum;
-    Nonprofit* left;
-    Nonprofit* right;
 public:
     Nonprofit();
     Nonprofit(std::string name, std::string street, int zip, std::string state, int region, std::string NTEE);
     int matchIndex;
+    Nonprofit* left;
+    Nonprofit* right;
     std::string getStreet();
     int getZip();
     std::string getState();

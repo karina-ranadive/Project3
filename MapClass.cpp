@@ -3,11 +3,16 @@
 
 MapClass::MapClass(string category){
     this->category = category;
+    this->counter = 0;
+    ptr = nullptr;
+}
+
+MapClass::MapClass(){
+
 }
 
 void MapClass::InsertIntoMap(string name, Nonprofit obj){
     orgs[name] = obj;
-
 }
 
 void MapClass::SearchRegion(int region){
@@ -50,6 +55,7 @@ void MapClass::SearchStreet(string street){
         }
     }
 }
+
 void MapClass::SearchZip(int zipCode){
     for(iter = orgs.begin(); iter!=orgs.end(); ++iter){
         if(iter->second.getZip() == zipCode){
@@ -57,6 +63,7 @@ void MapClass::SearchZip(int zipCode){
         }
     }
 }
+
 void MapClass::SearchCause(string ntee){
     for(iter = orgs.begin(); iter!=orgs.end(); ++iter){
         if(iter->second.getNTEE() == ntee){
@@ -72,7 +79,8 @@ void MapClass::SearchSubCat(string subcategory){
         }
     }
 }
-int::MapClass::FindHighestMatchIndex(){
+
+int MapClass::FindHighestMatchIndex(){
     int num = -1;
     for(iter = orgs.begin(); iter!=orgs.end(); ++iter){
         if(iter->second.matchIndex > num){
@@ -82,59 +90,70 @@ int::MapClass::FindHighestMatchIndex(){
     return num;
 }
 
-void::MapClass::PrintPreferences(int region, string state, string street, int zipCode, string subcat){
+int MapClass::getSize(){
+    return orgs.size();
+}
+
+void MapClass::Print(){
+    for(iter = orgs.begin(); iter!=orgs.end(); ++iter){
+        cout << iter->first << endl;
+    }
+}
+
+void MapClass::PrintPreferences(int region, string state, int zipCode, string subcat){
     if(region != 0){
         SearchRegion(region);
     }
     if(state!=""){
         SearchState(state);
     }
-    if(street != ""){
-        SearchStreet(street);
-    }
+    
     if(zipCode!=0){
         SearchZip(zipCode);
     }
-    if(subcat!=""){
+    if(subcat!= ""){
         SearchSubCat(subcat);
     }
 
-    map<int, Nonprofit> matches;
-    map<int, Nonprofit>::reverse_iterator it;
+    PrintRemaining();
 
+
+}
+
+void MapClass::PrintMatchIndex(int number){
     for(iter = orgs.begin(); iter!=orgs.end(); ++iter){
-        if(iter->second.matchIndex!=0){
-            matches[iter->second.matchIndex] = iter->second;
-        }
-    }
-    int count = 0;
-    for(it = matches.rbegin(); it!=matches.rend(); ++it){
-        if(iter->second.flag == false){
-            continue;
-        }
-        if(count == 101){
+        if(counter == 100) {
             break;
         }
-        iter->second.printNonprofit();
-        count++;
+        if(iter->second.matchIndex == number){
+            counter++;
+            iter->second.printNonprofit();
+        }
     }
+
+}
+
+void MapClass::PrintRemaining(){
+    int highest = FindHighestMatchIndex();
+        for(unsigned int i = highest; i > 0; i--){
+            if(counter < 100)
+                PrintMatchIndex(i);
+
+        }
 
 
 }
 
-void::MapClass::PrintbyName(string name){
+void MapClass::PrintByName(string name){
     for(iter = orgs.begin(); iter!=orgs.end(); ++iter){
         if(iter->first == name){
-            iter->second.printNonprofit();
-            iter->second.flag = false;
-            PrintPreferences(iter->second.getRegion(), iter->second.getState(), iter->second.getStreet(), iter->second.getZip(), iter->second.getSubCat());
+            PrintPreferences(iter->second.getRegion(), iter->second.getState(), iter->second.getZip(), iter->second.getSubCat());
         }
     }
 }
 
-void::MapClass::ResetNonProfitVars(){
+void MapClass::ResetNonProfitVars(){
     for(iter = orgs.begin(); iter!=orgs.end(); ++iter){
-        iter->second.flag = true;
         iter->second.matchIndex = false;
     }
 }

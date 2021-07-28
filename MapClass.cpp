@@ -101,14 +101,14 @@ void MapClass::Print(){
 }
 
 void MapClass::PrintPreferences(int region, string state, int zipCode, string subcat){
-    if(region != 0){
+    if(region != -1){
         SearchRegion(region);
     }
     if(state!=""){
         SearchState(state);
     }
     
-    if(zipCode!=0){
+    if(zipCode!= -1){
         SearchZip(zipCode);
     }
     if(subcat!= ""){

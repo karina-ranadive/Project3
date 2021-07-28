@@ -50,8 +50,8 @@ int main(){
 			getline(stream, state, ',');
 			getline(stream, regionStr, ',');
 			getline(stream, NTEE);
-
-			zip = stoi(zipStr);
+			
+			zip = stoi(zipStr.substr(0, zipStr.find("-")));
 			region = stoi(regionStr);
 
 			Nonprofit n(name, street, zip, state, region, NTEE);
@@ -279,6 +279,8 @@ int main(){
 			cout << "Preference for region: ";
 			string reg;
 			getline(cin, reg);
+			if(reg == "None")
+				reg = "-1";
 			int region = stoi(reg);
 
 			cout << endl << "Preference for state: ";
@@ -288,6 +290,8 @@ int main(){
 			cout << "Preference for Zip Code: ";
 			string zipCode;
 			getline(cin, zipCode);
+			if(zipCode == "None")
+				zipCode = "-1";
 			int zip = stoi(zipCode);
 			cout << endl;
 

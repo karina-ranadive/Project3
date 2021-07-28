@@ -1,3 +1,4 @@
+#pragma once
 #include <string>
 #include <iostream>
 
@@ -10,6 +11,7 @@ class Nonprofit
     int region;
     std::string NTEE;
     std::string subcategory;
+    int subcatNum;
 
 
 public:
@@ -24,4 +26,10 @@ public:
     std::string getSubCat();
     void printNonprofit();
     void setSubcat(std::string subcategory);
+    void setSubcat(std::string subcategory, int subcatNum);
+    void setSubcat(int subcatNum);
+    std::string getName();
+
+    friend bool operator < (const Nonprofit& lhs, const Nonprofit& rhs);
+    friend bool operator > (const Nonprofit& lhs, const Nonprofit& rhs);
 };

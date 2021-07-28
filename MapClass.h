@@ -1,3 +1,4 @@
+#pragma once
 #include <map>
 #include "Nonprofit.h"
 using namespace std;
@@ -29,5 +30,6 @@ public:
     void PrintPreferences(int region, string state, int zipCode, string subcat);
     void PrintByName(string name);
     void ResetNonProfitVars();
+    map<string, Nonprofit>& GetMap();
 
 };

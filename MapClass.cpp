@@ -158,3 +158,7 @@ void MapClass::ResetNonProfitVars(){
     }
 }
 
+map<string, Nonprofit>& MapClass::GetMap() {
+    return orgs;
+}
+

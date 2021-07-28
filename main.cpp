@@ -1,6 +1,8 @@
 #include "MapClass.h"
+#include "HeapClass.h"
 #include <fstream>
 #include <sstream>
+#include <cmath>
 #include <vector>
 
 int main(){
@@ -65,59 +67,59 @@ int main(){
 				b->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("C") == 0) {
-				n.setSubcat("Environment");
+				n.setSubcat("Environment", 1);
 				cd->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("D") == 0) {
-				n.setSubcat("Animal-Related");
+				n.setSubcat("Animal-Related", 2);
 				cd->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("E") == 0) {
-				n.setSubcat("Health Care");
+				n.setSubcat("Health Care", 1);
 				eh->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("F") == 0) {
-				n.setSubcat("Mental Health & Crisis Intervention");
+				n.setSubcat("Mental Health & Crisis Intervention", 2);
 				eh->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("G") == 0) {
-				n.setSubcat("Voluntary Health Associations & Medical Discipliness");
+				n.setSubcat("Voluntary Health Associations & Medical Discipliness", 3);
 				eh->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("H") == 0) {
-				n.setSubcat("Medical Research");
+				n.setSubcat("Medical Research", 4);
 				eh->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("I") == 0) {
-				n.setSubcat("Crime & Legal-Related");
+				n.setSubcat("Crime & Legal-Related", 1);
 				ip->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("J") == 0) {
-				n.setSubcat("Employment");
+				n.setSubcat("Employment", 2);
 				ip->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("K") == 0) {
-				n.setSubcat("Food, Agriculture & Nutrition");
+				n.setSubcat("Food, Agriculture & Nutrition", 3);
 				ip->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("L") == 0) {
-				n.setSubcat("Housing & Shelter");
+				n.setSubcat("Housing & Shelter", 4);
 				ip->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("M") == 0) {
-				n.setSubcat("Public Safety, Disaster Preparedness & Relief");
+				n.setSubcat("Public Safety, Disaster Preparedness & Relief", 5);
 				ip->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("N") == 0) {
-				n.setSubcat("Recreation & Sports");
+				n.setSubcat("Recreation & Sports", 6);
 				ip->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("O") == 0) {
-				n.setSubcat("Youth Development");
+				n.setSubcat("Youth Development", 7);
 				ip->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("P") == 0) {
-				n.setSubcat("Human Services");
+				n.setSubcat("Human Services", 8);
 				ip->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("Q") == 0) {
@@ -125,27 +127,27 @@ int main(){
 				q->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("R") == 0) {
-				n.setSubcat("Civil Rights, Social Action & Advocacy");
+				n.setSubcat("Civil Rights, Social Action & Advocacy", 1);
 				rw->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("S") == 0) {
-				n.setSubcat("Community Improvement & Capacity Building");
+				n.setSubcat("Community Improvement & Capacity Building", 2);
 				rw->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("T") == 0) {
-				n.setSubcat("Philanthropy, Voluntarism & Grantmaking Foundations");
+				n.setSubcat("Philanthropy, Voluntarism & Grantmaking Foundations", 3);
 				rw->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("U") == 0) {
-				n.setSubcat("Science & Technology");
+				n.setSubcat("Science & Technology", 4);
 				rw->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("V") == 0) {
-				n.setSubcat("Social Science");
+				n.setSubcat("Social Science", 5);
 				rw->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("W") == 0) {
-				n.setSubcat("Public & Societal Benefit");
+				n.setSubcat("Public & Societal Benefit", 6);
 				rw->InsertIntoMap(name, n);
 			}
 			else if (NTEE.substr(0, 1).compare("X") == 0) {
@@ -291,11 +293,43 @@ int main(){
 			int zip = stoi(zipCode);
 			cout << endl;
 
-			for (unsigned int i = 0; i < maps.size(); i++) {
-				if (category == maps[i].first) {
-					maps[i].second->PrintPreferences(region, state, zip, subcat);
+			cout << "Method Choice:" << endl;
+			cout << "1. Map" << endl;
+			cout << "2. Heap" << endl;
+			cout << "3. BST" << endl;
+			string choice_str;
+			getline(cin, choice_str);
+			int choice = stoi(choice_str);
+
+			if (choice == 1) {
+				for (unsigned int i = 0; i < maps.size(); i++) {
+					if (category == maps[i].first) {
+						maps[i].second->PrintPreferences(region, state, zip, subcat);
+					}
 				}
 			}
+			else if (choice == 2) {
+				//------------------HEAP IMPLEMENTATION--------------------------
+				Nonprofit target("", "", zip, state, region, cat);
+				if ((category != 1 && category != 2 && category != 6 && category != 8 && category != 9)) {
+					target.setSubcat(subcategory);
+				}
+
+				for (unsigned int i = 0; i < maps.size(); i++) {
+					if (category == maps[i].first) {
+						//map<string, Nonprofit>& source = maps[i].second->GetMap;
+						HeapClass heap = HeapClass(target, maps[i].second->GetMap());
+						int count = 0; //place to choose how many results to see
+						while (!heap.IsEmpty() && count < 25) {
+							heap.GetMax();
+							count++;
+						}
+					}
+				}
+			}
+			
+
+			
 		}
 
 	
@@ -303,6 +337,10 @@ int main(){
 		for (unsigned int i = 0; i < maps.size(); i++) {
 			maps[i].second->ResetNonProfitVars();
 		}
+
+
+		
+
 	}
 }
 

@@ -1,6 +1,6 @@
 #include "Nonprofit.h"
 
-Nonprofit::Nonprofit(std::string name, std::string street, int zip, std::string state, int region, std::string NTEE) {
+Nonprofit::Nonprofit(std::string name, std::string street, std::string zip, std::string state, int region, std::string NTEE) {
     this->name = name;
     this->street = street;
     this->zip = zip;
@@ -20,7 +20,7 @@ std::string Nonprofit::getStreet() {
     return street;
 }
 
-int Nonprofit::getZip() {
+std::string Nonprofit::getZip() {
     return zip;
 }
 
@@ -37,7 +37,7 @@ std::string Nonprofit::getNTEE() {
 }
 
 int Nonprofit::getSubCatInt() {
-    return this->subcatNum;
+    return subcatNum;
 }
 
 std::string Nonprofit::getSubCat(){
@@ -46,7 +46,6 @@ std::string Nonprofit::getSubCat(){
 
 void Nonprofit::printNonprofit() {
     std::cout << name  << " " << matchIndex << std::endl;
-
 }
 
 void Nonprofit::setSubcat(std::string subcategory) {
@@ -55,10 +54,10 @@ void Nonprofit::setSubcat(std::string subcategory) {
 
 void Nonprofit::setSubcat(std::string subcategory, int subcatNum) {
     this->subcategory = subcategory;
-    this->subcatNum = subcatNum;
+    subcatNum = subcatNum;
 }
 
-void Nonprofit::setSubcat(int subcatNum) {
+void Nonprofit::setSubcatNum(int subcatNum) {
     this->subcatNum = subcatNum;    //create a map for subcat nums -> subcat names
 }
 

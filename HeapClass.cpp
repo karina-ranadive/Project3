@@ -67,13 +67,11 @@ void HeapClass::CalculateMatch(Nonprofit& comp) {
 	int match = 0;
 	if (target.getRegion() != -1 && target.getRegion() == comp.getRegion())
 		match++;
-	if (target.getState() != "" && target.getState() == comp.getState())
+	if (target.getState() != "" && target.getState().compare(comp.getState()) == 0)
 		match++;
-	if (target.getStreet() != "" && target.getStreet() == comp.getStreet())
+	if (target.getZip().compare("-1") != 0 && target.getZip() == comp.getZip())
 		match++;
-	if (target.getZip() != -1 && target.getZip() == comp.getZip())
-		match++;
-	if (target.getSubCat() != "" && target.getSubCat() == comp.getSubCat())
+	if (target.getSubCat() != "" && target.getSubCatInt() == comp.getSubCatInt())
 		match++;
 	comp.matchIndex = match;
 }

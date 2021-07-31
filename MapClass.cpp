@@ -48,17 +48,10 @@ void MapClass::SearchState(string state){
     }
 }
 
-void MapClass::SearchStreet(string street){
-    for(iter = orgs.begin(); iter!=orgs.end(); ++iter){
-        if(iter->second.getStreet() == street){
-            iter->second.matchIndex++;
-        }
-    }
-}
 
-void MapClass::SearchZip(int zipCode){
+void MapClass::SearchZip(string zipCode){
     for(iter = orgs.begin(); iter!=orgs.end(); ++iter){
-        if(iter->second.getZip() == zipCode){
+        if(iter->second.getZip().compare(zipCode) == 0){
             iter->second.matchIndex++;
         }
     }
@@ -94,13 +87,8 @@ int MapClass::getSize(){
     return orgs.size();
 }
 
-void MapClass::Print(){
-    for(iter = orgs.begin(); iter!=orgs.end(); ++iter){
-        cout << iter->first << endl;
-    }
-}
 
-void MapClass::PrintPreferences(int region, string state, int zipCode, int subcat){
+void MapClass::CalculateMatches(int region, string state, string zipCode, int subcat){
     if(region != -1){
         SearchRegion(region);
     }
@@ -108,14 +96,13 @@ void MapClass::PrintPreferences(int region, string state, int zipCode, int subca
         SearchState(state);
     }
     
-    if(zipCode!= -1){
+    if(zipCode.compare("-1") != 0){
         SearchZip(zipCode);
     }
     if(subcat!= -1){
         SearchSubCat(subcat);
     }
 
-    PrintRemaining();
 
 
 }
@@ -133,7 +120,7 @@ void MapClass::PrintMatchIndex(int number){
 
 }
 
-void MapClass::PrintRemaining(){
+void MapClass::Print(){
     int highest = FindHighestMatchIndex();
         for(unsigned int i = highest; i > 0; i--){
             if(counter < 100)
@@ -141,13 +128,13 @@ void MapClass::PrintRemaining(){
 
         }
 
-
 }
 
 void MapClass::PrintByName(string name){
     for(iter = orgs.begin(); iter!=orgs.end(); ++iter){
         if(iter->first == name){
-            PrintPreferences(iter->second.getRegion(), iter->second.getState(), iter->second.getZip(), iter->second.getSubCatInt());
+            CalculateMatches(iter->second.getRegion(), iter->second.getState(), iter->second.getZip(), iter->second.getSubCatInt());
+            Print();
         }
     }
 }

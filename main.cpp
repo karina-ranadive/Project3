@@ -337,8 +337,6 @@ int main(){
 			else {
 				Nonprofit target("", "", zipCode, state, region, cat);
 				target.setSubcatNum(subcategory);
-				cout << subcategory << endl;
-				cout << target.getSubCatInt() << endl;;
 
 				for (unsigned int i = 0; i < maps.size(); i++) {
 					if (category == maps[i].first) {

@@ -2,15 +2,10 @@
 
 Tree::Tree(Nonprofit _target, map<string, Nonprofit>& orgs) {
     target = _target;
-    count = 0;
-    cout << _target.getSubCatInt() << endl;
+
     for (auto iter = orgs.begin(); iter != orgs.end(); iter++) {
         CalculateMatch(iter->second);
         root = Insert(root, &iter->second);
-        count++;
-       /* if (count == 2 ) {
-            break;
-        }*/
     }
     traverse(root);
 }

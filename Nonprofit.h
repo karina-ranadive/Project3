@@ -33,4 +33,5 @@ public:
 
     friend bool operator < (const Nonprofit& lhs, const Nonprofit& rhs);
     friend bool operator > (const Nonprofit& lhs, const Nonprofit& rhs);
+    friend bool operator <= (const Nonprofit& lhs, const Nonprofit& rhs);
 };

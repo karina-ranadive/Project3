@@ -20,14 +20,14 @@ public:
     bool FindName(string name);
     void SearchState(string state);
     void SearchStreet(string street);
-    void SearchZip(int zip);
+    void SearchZip(string zip);
     void SearchCause(string ntee);
     void SearchSubCat(int subcategory);
     int FindHighestMatchIndex();
     void PrintMatchIndex(int number);
     void Print();
     void PrintRemaining();
-    void PrintPreferences(int region, string state, int zipCode, int subcat);
+    void PrintPreferences(int region, string state, string zipCode, int subcat);
     void PrintByName(string name);
     void ResetNonProfitVars();
     map<string, Nonprofit>& GetMap();

@@ -56,9 +56,9 @@ void MapClass::SearchStreet(string street){
     }
 }
 
-void MapClass::SearchZip(int zipCode){
+void MapClass::SearchZip(string zipCode){
     for(iter = orgs.begin(); iter!=orgs.end(); ++iter){
-        if(iter->second.getZip() == zipCode){
+        if(iter->second.getZip().compare(zipCode) == 0){
             iter->second.matchIndex++;
         }
     }
@@ -100,7 +100,7 @@ void MapClass::Print(){
     }
 }
 
-void MapClass::PrintPreferences(int region, string state, int zipCode, int subcat){
+void MapClass::PrintPreferences(int region, string state, string zipCode, int subcat){
     if(region != -1){
         SearchRegion(region);
     }
@@ -108,7 +108,7 @@ void MapClass::PrintPreferences(int region, string state, int zipCode, int subca
         SearchState(state);
     }
     
-    if(zipCode!= -1){
+    if(zipCode.compare("-1") != 0){
         SearchZip(zipCode);
     }
     if(subcat!= -1){

@@ -1,28 +1,52 @@
 #include "Tree.h"
-#include "Nonprofit.h"
 
-Tree(Nonprofit target, map<string, Nonprofit>& orgs) {
+Tree::Tree(Nonprofit _target, map<string, Nonprofit>& orgs) {
+    target = _target;
+    count = 0;
+    cout << _target.getSubCatInt() << endl;
     for (auto iter = orgs.begin(); iter != orgs.end(); iter++) {
         CalculateMatch(iter->second);
-        Insert(iter->second);
+        root = Insert(root, &iter->second);
+        count++;
+       /* if (count == 2 ) {
+            break;
+        }*/
     }
+    traverse(root);
 }
 
-Nonprofit* Tree::Insert(Nonprofit* root, Nonprofit *obj) {
-    if(root == nullptr)
+Nonprofit* Tree::Insert(Nonprofit* root, Nonprofit* obj) {
+    if (root == nullptr)
         return obj;
     else if(obj->matchIndex < root->matchIndex)
         root->left = Insert(root->left, obj);
     else if(obj->matchIndex > root->matchIndex)
         root->right = Insert(root->right, obj);
+    else if(obj->matchIndex = root->matchIndex) 
+        root->left = Insert(root->left, obj);
     return root;
 }
 
 void Tree::traverse(Nonprofit* root) {
     if (root != nullptr) {
         traverse(root->right);
-        root->printNonprofit;
-        traverse(root->left);
+        if (count != 0) {
+            root->printNonprofit();
+            count--;
+            traverse(root->left);
+        }
     }
 }
 
+void Tree::CalculateMatch(Nonprofit &comp) {
+    int match = 0;
+    if (target.getRegion() == comp.getRegion())
+        match++;
+    if (target.getState().compare(comp.getState()) == 0)
+        match++;
+    if (target.getZip().compare(comp.getZip()) == 0)
+        match++;
+    if (target.getSubCatInt() == comp.getSubCatInt())
+        match++;
+    comp.matchIndex = match;
+}

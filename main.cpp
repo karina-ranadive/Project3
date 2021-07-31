@@ -2,6 +2,8 @@
 #include "HeapClass.h"
 #include <fstream>
 #include <sstream>
+#include <chrono>
+#include <time.h>
 #include <cmath>
 #include <vector>
 
@@ -53,7 +55,7 @@ int main(){
 			getline(stream, regionStr, ',');
 			getline(stream, NTEE);
 			
-			zip = stoi(zipStr.substr(0, zipStr.find("-")));
+			zip = stoi(zipStr.substr(0, 5));
 			region = stoi(regionStr);
 
 			Nonprofit n(name, street, zip, state, region, NTEE);
@@ -306,11 +308,15 @@ int main(){
 			int choice = stoi(choice_str);
 
 			if (choice == 1) {
+				auto begin = chrono::high_resolution_clock::now();
 				for (unsigned int i = 0; i < maps.size(); i++) {
 					if (category == maps[i].first) {
 						maps[i].second->PrintPreferences(region, state, zip, subcategory);
 					}
 				}
+				auto end = chrono::high_resolution_clock::now();
+				chrono::duration<double> num = end - begin;
+    			cout << num.count() << endl;
 			}
 			else if (choice == 2) {
 				//------------------HEAP IMPLEMENTATION--------------------------

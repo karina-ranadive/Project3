@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <iostream>
+#include <vector>
 
 class Nonprofit
 {
@@ -12,12 +13,16 @@ class Nonprofit
     std::string NTEE;
     std::string subcategory;
     int subcatNum;
+
 public:
     Nonprofit();
     Nonprofit(std::string name, std::string street, std::string zip, std::string state, int region, std::string NTEE);
     int matchIndex;
+    int height;
+    std::vector<Nonprofit*> sameIndex;
     Nonprofit* left;
     Nonprofit* right;
+
     std::string getStreet();
     std::string getZip();
     std::string getState();

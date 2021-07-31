@@ -9,9 +9,13 @@ using namespace std;
 class Tree {
     Nonprofit* root = nullptr;
     Nonprofit target;
-    int count = 10;
+    int count = 100;
 public:
     Tree(Nonprofit _target, map<string, Nonprofit>& orgs);
+    Nonprofit* rotateLeft(Nonprofit* root);
+    Nonprofit* rotateRight(Nonprofit* root);
+    int getHeight(Nonprofit* root);
+    int balanceFactor(Nonprofit* root);
     Nonprofit* Insert(Nonprofit* root, Nonprofit *obj);
     void traverse(Nonprofit* root);
     void CalculateMatch(Nonprofit& comp);

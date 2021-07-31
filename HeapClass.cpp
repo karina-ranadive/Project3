@@ -20,7 +20,7 @@ void HeapClass::HeapifyUp(Nonprofit add) {
 	int parent_index = floor((end_index - 1) / 2);
 	//insert new item into the bottom of the heap
 	heap.push_back(add);
-	while (parent_index >= 0 && heap.at(parent_index) < heap.at(curr_index)) {
+	while (parent_index >= 0 && heap.at(parent_index) <= heap.at(curr_index) && parent_index != curr_index) {
 		//swap parent and child
 		Nonprofit holder = heap.at(parent_index);
 		heap.at(parent_index) = heap.at(curr_index);
@@ -39,7 +39,7 @@ void HeapClass::HeapifyDown(int i) {
 	//determine approprite swap
 	if (heap.size() > left && (heap.at(left) > heap.at(i)))
 		swap_index = left;
-	if (heap.size() > right && (heap.at(right) > heap.at(i)))
+	if (heap.size() > right && (heap.at(right) > heap.at(i)) && (heap.at(right) > heap.at(left)))
 		swap_index = right;
 
 	if (swap_index != -1) {
@@ -52,6 +52,7 @@ void HeapClass::HeapifyDown(int i) {
 }
 
 Nonprofit HeapClass::GetMax() {
+
 	Nonprofit out_val = heap.at(0);
 	cout << out_val.getName() << " " << out_val.matchIndex << endl;
 	heap.at(0) = heap.at(end_index);
@@ -59,6 +60,7 @@ Nonprofit HeapClass::GetMax() {
 	end_index--;
 	if (heap.size() >= 1)
 		HeapifyDown(0);
+	
 	return out_val;
 }
 
@@ -71,7 +73,7 @@ void HeapClass::CalculateMatch(Nonprofit& comp) {
 		match++;
 	if (target.getZip().compare("-1") != 0 && target.getZip() == comp.getZip())
 		match++;
-	if (target.getSubCat() != "" && target.getSubCatInt() == comp.getSubCatInt())
+	if (target.getSubCatInt() == comp.getSubCatInt())
 		match++;
 	comp.matchIndex = match;
 }

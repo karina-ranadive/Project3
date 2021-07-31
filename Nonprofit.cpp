@@ -10,6 +10,7 @@ Nonprofit::Nonprofit(std::string name, std::string street, std::string zip, std:
     matchIndex = 0;
     left = nullptr;
     right = nullptr;
+    subcatNum = 0;
 }
 
 Nonprofit::Nonprofit(){
@@ -71,4 +72,8 @@ bool operator < (const Nonprofit& lhs, const Nonprofit& rhs) {
 bool operator > (const Nonprofit& lhs, const Nonprofit& rhs) {
     return lhs.matchIndex > rhs.matchIndex;
 
+}
+
+bool operator <= (const Nonprofit& lhs, const Nonprofit& rhs) {
+    return lhs.matchIndex <= rhs.matchIndex;
 }

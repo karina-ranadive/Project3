@@ -6,3 +6,4 @@ https://github.com/lecy/Open-Data-for-Nonprofit-Research/blob/master/Open_Nonpro
 https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/ZPHJYA
 https://www.pluralsight.com/blog/software-development/how-to-measure-execution-time-intervals-in-c-- 
 https://www.youtube.com/watch?v=0fKg7e37bQE
+https://www.sfml-dev.org/

@@ -46,7 +46,9 @@ std::string Nonprofit::getSubCat(){
 }
 
 void Nonprofit::printNonprofit() {
-    std::cout << name  << " " << matchIndex << std::endl;
+    std::cout << "Name: " << name << std::endl;
+    std::cout << "Street address: " << street << " " << state << " " << zip << std::endl;
+    std::cout << std::endl;
 }
 
 void Nonprofit::setSubcat(std::string subcategory) {

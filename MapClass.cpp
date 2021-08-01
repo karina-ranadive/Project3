@@ -95,7 +95,7 @@ void MapClass::CalculateMatches(int region, string state, string zipCode, int su
     if(state!=""){
         SearchState(state);
     }
-    
+
     if(zipCode.compare("-1") != 0){
         SearchZip(zipCode);
     }
@@ -108,13 +108,14 @@ void MapClass::CalculateMatches(int region, string state, string zipCode, int su
 }
 
 void MapClass::PrintMatchIndex(int number){
-    for(iter = orgs.begin(); iter!=orgs.end(); ++iter){
+    map<string, Nonprofit>::iterator i;
+    for(i = orgs.begin(); i!=orgs.end(); ++i){
         if(counter == 100) {
             break;
         }
-        if(iter->second.matchIndex == number){
+        if(i->second.matchIndex == number){
             counter++;
-            iter->second.printNonprofit();
+            i->second.printNonprofit();
         }
     }
 
@@ -122,18 +123,19 @@ void MapClass::PrintMatchIndex(int number){
 
 void MapClass::Print(){
     int highest = FindHighestMatchIndex();
-        for(unsigned int i = highest; i > 0; i--){
-            if(counter < 100)
-                PrintMatchIndex(i);
+    for(unsigned int i = highest; i > 0; i--){
+        if(counter < 100)
+            PrintMatchIndex(i);
 
-        }
+    }
 
 }
 
 void MapClass::PrintByName(string name){
-    for(iter = orgs.begin(); iter!=orgs.end(); ++iter){
-        if(iter->first == name){
-            CalculateMatches(iter->second.getRegion(), iter->second.getState(), iter->second.getZip(), iter->second.getSubCatInt());
+    map<string, Nonprofit>::iterator it;
+    for(it = orgs.begin(); it!=orgs.end(); ++it){
+        if(it->first == name){
+            CalculateMatches(it->second.getRegion(), it->second.getState(), it->second.getZip(), it->second.getSubCatInt());
             Print();
         }
     }
@@ -141,8 +143,9 @@ void MapClass::PrintByName(string name){
 
 void MapClass::ResetNonProfitVars(){
     for(iter = orgs.begin(); iter!=orgs.end(); ++iter){
-        iter->second.matchIndex = false;
+        iter->second.matchIndex = 0;
     }
+    counter = 0;
 }
 
 map<string, Nonprofit>& MapClass::GetMap() {

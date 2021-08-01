@@ -190,15 +190,6 @@ int main(){
     //--------------------------------------------MAP USER IMPLEMENTATION-----------------------------------------------
 
 
-    /*
-    THIS TEST WORKS
-    y->PrintByName("BENEVOLENT & PROTECTIVE ORDER OF ELKS OF THE USA");
-    for(int i = 0; i < maps.size(); i++){
-        if(maps[i].first == 9){
-            maps[i].second->PrintByName("BENEVOLENT & PROTECTIVE ORDER OF ELKS OF THE USA");
-        }
-    }
-    */
 
 
     int choice = -1;

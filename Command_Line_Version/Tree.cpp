@@ -15,6 +15,7 @@ Tree::Tree(Nonprofit _target, map<string, Nonprofit>& orgs) {
     traverse(root);
 }
 
+//Citation: Referenced Balanced Tree Module Slides
 Nonprofit* Tree::rotateLeft(Nonprofit* root) {
     Nonprofit* b = root->right;
     Nonprofit* c = b->right;
@@ -28,7 +29,7 @@ Nonprofit* Tree::rotateLeft(Nonprofit* root) {
 
     return b;
 }
-
+//Citation: Referenced Balanced Tree Module Slides
 Nonprofit* Tree::rotateRight(Nonprofit* root) {
     Nonprofit* b = root->left;
     Nonprofit* a = b->left;
@@ -43,6 +44,7 @@ Nonprofit* Tree::rotateRight(Nonprofit* root) {
     return b;
 }
 
+//Citation: Referenced Balanced Tree Module Slides
 int Tree::getHeight(Nonprofit* root) {
     int heightL;
     int heightR;
@@ -55,6 +57,7 @@ int Tree::getHeight(Nonprofit* root) {
     return 0;
 }
 
+//Citation: Referenced Balanced Tree Module Slides
 int Tree::balanceFactor(Nonprofit* root) {
     if (root != nullptr) {
         return getHeight(root->left) - getHeight(root->right);
@@ -62,6 +65,7 @@ int Tree::balanceFactor(Nonprofit* root) {
     return 0;
 }
 
+//Citation: Lecture Slides: Trees 1 "Binary Search Tree: C++ Insert"
 Nonprofit* Tree::Insert(Nonprofit* root, Nonprofit* obj) {
     if (root == nullptr)
         return obj;

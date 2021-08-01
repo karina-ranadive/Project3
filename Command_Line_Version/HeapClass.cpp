@@ -54,7 +54,7 @@ void HeapClass::HeapifyDown(int i) {
 Nonprofit HeapClass::GetMax() {
 
     Nonprofit out_val = heap.at(0);
-    cout << out_val.getName() << " " << out_val.matchIndex << endl;
+    out_val.printNonprofit();
     heap.at(0) = heap.at(end_index);
     heap.pop_back();
     end_index--;

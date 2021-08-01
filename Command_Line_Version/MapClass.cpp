@@ -11,6 +11,7 @@ MapClass::MapClass(){
 
 }
 
+//Citation: Referenced Sets, Maps, & Hash Tables slides 
 void MapClass::InsertIntoMap(string name, Nonprofit obj){
     orgs[name] = obj;
 }

@@ -16,6 +16,7 @@ using namespace std;
 //NONPROFIT CLASS
 class Nonprofit
 {
+	// Private class variables
 	std::string name;
 	std::string street;
 	std::string zip;
@@ -25,14 +26,18 @@ class Nonprofit
 	std::string subcategory;
 	int subcatNum;
 public:
+	// Constructors
 	Nonprofit();
 	Nonprofit(std::string name, std::string street, std::string zip, std::string state, int region, std::string NTEE);
 	
+	// Public class variables
 	int matchIndex;
 	int height;
 	std::vector<Nonprofit*> sameIndex;
 	Nonprofit* left;
 	Nonprofit* right;
+	
+	// Getters and Setters
 	std::string getStreet();
 	std::string getZip();
 	std::string getState();
@@ -48,12 +53,13 @@ public:
 	std::string getInfo();
 	std::string getFileInfo();
 
+	// Comparisons
 	friend bool operator < (const Nonprofit& lhs, const Nonprofit& rhs);
 	friend bool operator > (const Nonprofit& lhs, const Nonprofit& rhs);
 };
 
 
-
+// Constructor to assign all necessary class variables
 Nonprofit::Nonprofit(std::string name, std::string street, std::string zip, std::string state, int region, std::string NTEE) {
 	this->name = name;
 	this->street = street;
@@ -71,6 +77,7 @@ Nonprofit::Nonprofit() {
 
 }
 
+// Getter functions
 std::string Nonprofit::getStreet() {
 	return street;
 }
@@ -99,10 +106,12 @@ std::string Nonprofit::getSubCat() {
 	return this->subcategory;
 }
 
+// Prints nonprofit info
 void Nonprofit::printNonprofit() {
 	std::cout << name << " " << matchIndex << std::endl;
 }
 
+// Setter functions
 void Nonprofit::setSubcat(std::string subcategory) {
 	this->subcategory = subcategory;
 }
@@ -116,6 +125,7 @@ void Nonprofit::setSubcatNum(int subcatNum) {
 	this->subcatNum = subcatNum;    //create a map for subcat nums -> subcat names
 }
 
+// Getter functions
 std::string Nonprofit::getName() {
 	return name;
 }
@@ -128,6 +138,7 @@ std::string Nonprofit::getFileInfo() {
 	return name + "," + street + "," + state + "," + zip + "\n";
 }
 
+// Comparisons
 bool operator < (const Nonprofit& lhs, const Nonprofit& rhs) {
 	return lhs.matchIndex < rhs.matchIndex;
 }
@@ -468,10 +479,12 @@ bool HeapClass::IsEmpty() {
 
 //TREE CLASS
 class Tree {
+	// Private class variables
 	Nonprofit* root = nullptr;
 	Nonprofit target;
 	int count = 100;
 public:
+	// AVL tree functions
 	Tree(Nonprofit _target, map<string, Nonprofit>& orgs, string& output, string& file_output);
 	Nonprofit* rotateLeft(Nonprofit* root);
 	Nonprofit* rotateRight(Nonprofit* root);
@@ -486,6 +499,7 @@ Tree::Tree(Nonprofit _target, map<string, Nonprofit>& orgs, string& output, stri
 	target = _target;
 
 	int test = -1;
+	// Runs through orgs to calculate match index and insert into tree
 	for (auto iter = orgs.begin(); iter != orgs.end(); iter++) {
 		CalculateMatch(iter->second);
 		root = Insert(root, &iter->second);
@@ -495,6 +509,7 @@ Tree::Tree(Nonprofit _target, map<string, Nonprofit>& orgs, string& output, stri
 		}
 	}
 
+	// Traverses tree
 	file_output = traverse(root);
 	stringstream ss(file_output);
 	string line = "";
@@ -507,6 +522,8 @@ Tree::Tree(Nonprofit _target, map<string, Nonprofit>& orgs, string& output, stri
 	}
 }
 
+//Citation: Referenced Balanced Tree Module Slides
+// Rotates left in respect to given node
 Nonprofit* Tree::rotateLeft(Nonprofit* root) {
 	Nonprofit* b = root->right;
 	Nonprofit* c = b->right;
@@ -521,6 +538,8 @@ Nonprofit* Tree::rotateLeft(Nonprofit* root) {
 	return b;
 }
 
+//Citation: Referenced Balanced Tree Module Slides
+// Rotates right in respect to given node
 Nonprofit* Tree::rotateRight(Nonprofit* root) {
 	Nonprofit* b = root->left;
 	Nonprofit* a = b->left;
@@ -535,6 +554,8 @@ Nonprofit* Tree::rotateRight(Nonprofit* root) {
 	return b;
 }
 
+//Citation: Referenced Balanced Tree Module Slides
+// Caculates given node's height
 int Tree::getHeight(Nonprofit* root) {
 	int heightL;
 	int heightR;
@@ -547,6 +568,8 @@ int Tree::getHeight(Nonprofit* root) {
 	return 0;
 }
 
+//Citation: Referenced Balanced Tree Module Slides
+// Calculates balance factor for given node
 int Tree::balanceFactor(Nonprofit* root) {
 	if (root != nullptr) {
 		return getHeight(root->left) - getHeight(root->right);
@@ -554,7 +577,9 @@ int Tree::balanceFactor(Nonprofit* root) {
 	return 0;
 }
 
+//Citation: Lecture Slides: Trees 1 "Binary Search Tree: C++ Insert"
 Nonprofit* Tree::Insert(Nonprofit* root, Nonprofit* obj) {
+	// Recursively inserts node into tree
 	if (root == nullptr)
 		return obj;
 	else if (obj->matchIndex < root->matchIndex)
@@ -568,6 +593,7 @@ Nonprofit* Tree::Insert(Nonprofit* root, Nonprofit* obj) {
 
 	int factor = balanceFactor(root);
 
+	// Rebalances tree through required rotations
 	if (factor < -1 && obj->matchIndex > root->right->matchIndex)
 		return rotateLeft(root);
 	if (factor > 1 && obj->matchIndex < root->left->matchIndex)
@@ -586,6 +612,7 @@ Nonprofit* Tree::Insert(Nonprofit* root, Nonprofit* obj) {
 	return root;
 }
 
+// Traverse tree through backwards inorder
 string Tree::traverse(Nonprofit* root) {
 	string out_string = "";
 	if (root != nullptr) {
@@ -607,6 +634,7 @@ string Tree::traverse(Nonprofit* root) {
 	return out_string;
 }
 
+// Calculates match based on user preferences
 void Tree::CalculateMatch(Nonprofit& comp) {
 	int match = 0;
 	if (target.getRegion() == comp.getRegion())
@@ -765,6 +793,7 @@ int main()
 
 
 	//Populate maps - use MapClass and file reading
+	// Creates maps for each main category of nonprofits
 	vector<pair <int, MapClass*> > maps;
 	MapClass* a = new MapClass("Arts, Culture & Humanities");
 	maps.push_back(make_pair(1, a));
@@ -787,6 +816,7 @@ int main()
 
 	ifstream inFile("NPOMasterFileFinal.csv");
 
+	// Reads in data from csv file
 	if (inFile.is_open()) {
 		string lineFromFile;
 		getline(inFile, lineFromFile);
@@ -812,8 +842,10 @@ int main()
 
 			region = stoi(regionStr);
 
+			// Creates nonprofit object from data
 			Nonprofit n(name, street, zipStr.substr(0, 5), state, region, NTEE);
 
+			// Assigns subcategory and inserts into category map
 			if (NTEE.substr(0, 1).compare("A") == 0) {
 				n.setSubcat("Arts, Culture & Humanties");
 				n.setSubcatNum(1);

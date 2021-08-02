@@ -4,11 +4,11 @@
 using namespace std;
 
 class MapClass{
-    map<string, Nonprofit> orgs;
-    map<string, Nonprofit>::iterator iter;
+    map<string, Nonprofit> orgs; //this is the STL map that is stored in this map class that stores the names of noprofits as keys and the nonprofit objects as values
+    map<string, Nonprofit>::iterator iter; //the class iterator for the map 
     string category;
 
-public:
+public: //all the publlic methods and variables 
     MapClass(string category);
     MapClass();
     MapClass* ptr;

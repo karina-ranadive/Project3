@@ -1,19 +1,21 @@
 #include "HeapClass.h"
 
+//Constructor: creates and populates heap using an input map for specified category, organized by match to target parameters
 HeapClass::HeapClass(Nonprofit _target, map<string, Nonprofit>& orgs) {
     //input map will be compatible with desired category
     end_index = -1;
     target = _target;
-    //possibly iterate backwards for alphabetical order
+    //iterate through map to populate heap
     for (auto iter = orgs.begin(); iter != orgs.end(); iter++) {
         CalculateMatch(iter->second);
         //cout << iter->second.getName() << iter->second.matchIndex << endl;
-        HeapifyUp(iter->second);
+        HeapifyUp(iter->second); //custom comparators in the nonprofit class allow direct comparisons of nonprofits
     }
 
 }
 
 //Algorithm Credit: Lecture Slides "Heaps" by Prof. Kapoor
+//Insert into the heap, swapping until every ancestor of the added element is greater than or equal to itsel
 void HeapClass::HeapifyUp(Nonprofit add) {
     end_index++;
     int curr_index = end_index;
@@ -32,6 +34,7 @@ void HeapClass::HeapifyUp(Nonprofit add) {
 }
 
 //Algorithm Credit: Lecture Slides "Heaps" by Prof. Kapoor
+//Extract from the heap, swapping the first and last element, pushing off the last element, and shifting until the max heap property is met
 void HeapClass::HeapifyDown(int i) {
     int left = (2 * i) + 1;
     int right = (2 * i) + 2;
@@ -51,6 +54,7 @@ void HeapClass::HeapifyDown(int i) {
     }
 }
 
+//Extracts the maximum and calls HeapifyDown to balance
 Nonprofit HeapClass::GetMax() {
 
     Nonprofit out_val = heap.at(0);
@@ -64,7 +68,7 @@ Nonprofit HeapClass::GetMax() {
     return out_val;
 }
 
-
+//Calculates match index - how closely a nonprofit matches the user's preferences
 void HeapClass::CalculateMatch(Nonprofit& comp) {
     int match = 0;
     if (target.getRegion() != -1 && target.getRegion() == comp.getRegion())
@@ -78,6 +82,7 @@ void HeapClass::CalculateMatch(Nonprofit& comp) {
     comp.matchIndex = match;
 }
 
+//Accessor
 bool HeapClass::IsEmpty() {
     if (heap.size() == 0)
         return true;

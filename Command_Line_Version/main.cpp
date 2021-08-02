@@ -10,7 +10,7 @@
 
 int main(){
     // Creates maps for each main category of nonprofits
-    vector<pair <int, MapClass*> > maps;
+    vector<pair <int, MapClass*> > maps; //stores each map of different category in a vector of maps 
     MapClass* a = new MapClass("Arts, Culture & Humanities");
     maps.push_back(make_pair(1, a));
     MapClass* b = new MapClass("Education");
@@ -30,16 +30,17 @@ int main(){
     MapClass* y = new MapClass("Mutual/Membership Benefit");
     maps.push_back(make_pair(9, y));
 
-    ifstream inFile("NPOMasterFileFinal.csv");
+    ifstream inFile("NPOMasterFileFinal.csv"); //creates a ifstream object to read in the data 
 
     // Reads in data from csv file
     if (inFile.is_open()) {
         string lineFromFile;
-        getline(inFile, lineFromFile);
+        getline(inFile, lineFromFile); //uses getline to take in each line of the csv file 
 
-        while (getline(inFile, lineFromFile)) {
-            istringstream stream(lineFromFile);
-
+        while (getline(inFile, lineFromFile)) { //while each line can be read from the csv file, the process of reading in the data is run 
+            istringstream stream(lineFromFile); //istringstream is used to read each line in the file so its components can be broken up into different variables 
+            
+            //initialization of different variables where parts of one line will be stored 
             string name;
             string street;
             string zipStr;
@@ -48,7 +49,8 @@ int main(){
             string NTEE;
             int region;
             int revenue;
-
+            
+            //getline is used to read in from the istringstream and store in the data into the variables 
             getline(stream, name, ',');
             getline(stream, street, ',');
             getline(stream, zipStr, ',');
@@ -62,9 +64,9 @@ int main(){
             Nonprofit n(name, street, zipStr.substr(0,5), state, region, NTEE);
 
             // Assigns subcategory and inserts into category map
-            if (NTEE.substr(0, 1).compare("A") == 0) {
+            if (NTEE.substr(0, 1).compare("A") == 0) { //the first part of the NTEE code corresponds with a subcategory 
                 n.setSubcat("Arts, Culture & Humanties");
-                n.setSubcatNum(1);
+                n.setSubcatNum(1); 
                 a->InsertIntoMap(name, n);
             }
             else if (NTEE.substr(0, 1).compare("B") == 0) {
@@ -189,11 +191,8 @@ int main(){
             }
         }
     }
-
-    //--------------------------------------------MAP USER IMPLEMENTATION-----------------------------------------------
-
-
-
+    
+    //Citation for duration time: https://www.pluralsight.com/blog/software-development/how-to-measure-execution-time-intervals-in-c-- 
 
     int choice = -1;
     while (choice != 0) {
@@ -205,15 +204,15 @@ int main(){
         //Search By Name
         if (choice == 1) {
             cout << "What is the name of the nonprofit your are looking for? ";
-            string temp;
+            string temp; //the user will enter a specific name for the Search By Name option 
             getline(cin, temp);
             string name;
             getline(cin, name);
             cout << endl << "Loading Results..." << endl;
-            auto begin = chrono::high_resolution_clock::now();
+            auto begin = chrono::high_resolution_clock::now(); //the time starts being recorded 
             int count = 0;
-            for (unsigned int i = 0; i < maps.size(); i++) {
-                if (maps[i].second->FindName(name) == true) {
+            for (unsigned int i = 0; i < maps.size(); i++) {  //all of the maps are iterated through to find the name if it is in the map
+                if (maps[i].second->FindName(name) == true) { //if the name can be found, print by name is executed 
                     maps[i].second->PrintByName(name);
                     break;
                 }
@@ -223,7 +222,7 @@ int main(){
                 cout << "The nonprofit you are looking for cannot be found in our database." << endl;
             }
             cout << endl;
-            auto last = chrono::high_resolution_clock::now();
+            auto last = chrono::high_resolution_clock::now(); //time is finished and calculated 
             chrono::duration<double> num = last - begin;
             cout << "Time Taken: " << num.count() << " seconds" << endl;
         }
@@ -334,15 +333,15 @@ int main(){
             int choice = stoi(choice_str);
             
             if (choice == 1) {
-                auto begin = chrono::high_resolution_clock::now();
-                for (unsigned int i = 0; i < maps.size(); i++) {
-                    if (category == maps[i].first) {
+                auto begin = chrono::high_resolution_clock::now(); //the duration calculation starts here 
+                for (unsigned int i = 0; i < maps.size(); i++) { //there is an iteration through all of the maps if the category aligns, the match index is calculated and based on that the top nonprofits are printed
+                    if (category == maps[i].first) { 
                         maps[i].second->CalculateMatches(region, state, zipCode, subcategory);
                         maps[i].second->Print();
                     }
                 }
-                auto end = chrono::high_resolution_clock::now();
-                chrono::duration<double> num = end - begin;
+                auto end = chrono::high_resolution_clock::now(); //the duration ends here 
+                chrono::duration<double> num = end - begin; //the end time is subtracted from the start time to get the duration
                 cout << "Time Taken: " << num.count() << " seconds" << endl;
             }
             else {
@@ -379,7 +378,7 @@ int main(){
         }
 
 
-        for (unsigned int i = 0; i < maps.size(); i++) {
+        for (unsigned int i = 0; i < maps.size(); i++) { //the maps are reset based on the function so that there are no issues with the while loop
             maps[i].second->ResetNonProfitVars();
         }
     }

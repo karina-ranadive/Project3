@@ -1,4 +1,4 @@
-# Project3
+# Project3 COP3530
 This repository has a Nonprofit generator which is a user based program that has a dataset of over 800,000 IRS registered nonprofit organizations that meet the updated NTEE code standards. The top 100 nonprofits are outputted to the user based on the preferences or the name of the nonprofit that the user inputs. The SFML Library is used for the user interface and C++ is used for programming this project.
 
 Citations: 

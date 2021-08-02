@@ -3,7 +3,7 @@ This repository has a Nonprofit generator which is a user based program that has
 
 The Command_Line_Version folder in this repository contains files to run our program in the command line interface.
 
-The SFML_Version folder in this repository contains files to run our program in an SFML-based interface. For best performance, type inputs exactly, do not attempt to backspace, and run each kind of search (map/heap/AVL tree) only once per program run.
+The SFML_Version folder in this repository contains files to run our program in an SFML-based interface. For best performance, type inputs exactly, do not attempt to backspace, and run each kind of search (map/heap/AVL tree) only once per program run. This version has organizational differences, as compiling with a makefile to combine numerous .cpp and .h files would have been very complex. All of the source code is contained in main.cpp.
 
 Citations: 
 Professor Kapoor's Lecture Slides,

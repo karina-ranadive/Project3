@@ -155,11 +155,11 @@ bool operator <= (const Nonprofit& lhs, const Nonprofit& rhs) {
 //MAP CLASS
 
 class MapClass {
-	map<string, Nonprofit> orgs;
+	map<string, Nonprofit> orgs; //this is the STL Map that is in the map class 
 	map<string, Nonprofit>::iterator iter;
 	string category;
 
-public:
+public: //public variables and functions 
 	MapClass(string category);
 	MapClass* ptr;
 	int counter;
@@ -186,20 +186,21 @@ public:
 
 };
 
+//constructor with parameter of category
 MapClass::MapClass(string category) {
 	this->category = category;
 	this->counter = 0;
 	ptr = nullptr;
 }
-
+//default constructor
 MapClass::MapClass() {
 
 }
-
+//this function inserts the key value pair of name of nonprofit and nonprofit object into map 
 void MapClass::InsertIntoMap(string name, Nonprofit obj) {
 	orgs[name] = obj;
 }
-
+//searches region to see if its in map and adds 1 to match index if it is 
 void MapClass::SearchRegion(int region) {
 	for (iter = orgs.begin(); iter != orgs.end(); ++iter) {
 		if (iter->second.getRegion() == region) {
@@ -207,7 +208,7 @@ void MapClass::SearchRegion(int region) {
 		}
 	}
 }
-
+//searches name to see if its in map and adds 1 to match index if it is 
 void MapClass::SearchName(string name) {
 	for (iter = orgs.begin(); iter != orgs.end(); ++iter) {
 		if (iter->first == name) {
@@ -215,7 +216,7 @@ void MapClass::SearchName(string name) {
 		}
 	}
 }
-
+//searches if there is a particular name in the map and if there is, the map returns true 
 bool MapClass::FindName(string name) {
 	for (iter = orgs.begin(); iter != orgs.end(); ++iter) {
 		if (iter->first == name) {
@@ -224,7 +225,7 @@ bool MapClass::FindName(string name) {
 	}
 	return false;
 }
-
+//searches state to see if its in map and adds 1 to match index if it is 
 void MapClass::SearchState(string state) {
 	for (iter = orgs.begin(); iter != orgs.end(); ++iter) {
 		if (iter->second.getState() == state) {
@@ -232,7 +233,7 @@ void MapClass::SearchState(string state) {
 		}
 	}
 }
-
+//searches state to see if its in map and adds 1 to match index if it is 
 void MapClass::SearchStreet(string street) {
 	for (iter = orgs.begin(); iter != orgs.end(); ++iter) {
 		if (iter->second.getStreet() == street) {
@@ -240,7 +241,7 @@ void MapClass::SearchStreet(string street) {
 		}
 	}
 }
-
+//searches zip to see if its in map and adds 1 to match index if it is 
 void MapClass::SearchZip(string zipCode) {
 	for (iter = orgs.begin(); iter != orgs.end(); ++iter) {
 		if (iter->second.getZip().compare(zipCode) == 0) {
@@ -248,7 +249,7 @@ void MapClass::SearchZip(string zipCode) {
 		}
 	}
 }
-
+//searches cause to see if its in map and adds 1 to match index if it is 
 void MapClass::SearchCause(string ntee) {
 	for (iter = orgs.begin(); iter != orgs.end(); ++iter) {
 		if (iter->second.getNTEE() == ntee) {
@@ -256,7 +257,7 @@ void MapClass::SearchCause(string ntee) {
 		}
 	}
 }
-
+//searches subcategory to see if its in map and adds 1 to match index if it is 
 void MapClass::SearchSubCat(int subcategory) {
 	for (iter = orgs.begin(); iter != orgs.end(); ++iter) {
 		if (iter->second.getSubCatInt() == subcategory) {
@@ -264,7 +265,7 @@ void MapClass::SearchSubCat(int subcategory) {
 		}
 	}
 }
-
+//finds the highest calculated match index of this map and returns that number 
 int MapClass::FindHighestMatchIndex() {
 	int num = -1;
 	for (iter = orgs.begin(); iter != orgs.end(); ++iter) {
@@ -274,12 +275,12 @@ int MapClass::FindHighestMatchIndex() {
 	}
 	return num;
 }
-
+//returns the size 
 int MapClass::getSize() {
 	return orgs.size();
 }
 
-
+//searches through the map class with the different parameters and calculates the match index and passes it along to print
 string MapClass::PrintPreferences(int region, string state, string zipCode, int subcat) {
 	if (region != -1) {
 		SearchRegion(region);
@@ -300,8 +301,7 @@ string MapClass::PrintPreferences(int region, string state, string zipCode, int 
 
 }
 
-
-
+//iterates through map and if the match index stored in the nonprofit is equal to the number passed in, it is passed to a string 
 string MapClass::PrintMatchIndex(int number) {
 	string out_string = "";
 	for (iter = orgs.begin(); iter != orgs.end(); ++iter) {
@@ -316,6 +316,7 @@ string MapClass::PrintMatchIndex(int number) {
 	return out_string;
 }
 
+//find the higehst match index and outputs everything to a string
 string MapClass::PrintRemaining() {
 	string out_string = "";
 	int highest = FindHighestMatchIndex();
@@ -327,7 +328,8 @@ string MapClass::PrintRemaining() {
 	return out_string;
 
 }
-
+//for the print by name feature, find the name and calculates the matches based on the name passed in
+//that is then put into an out string 
 string MapClass::PrintByName(string name) {
 	string out_string = "";
 	map<string, Nonprofit>::iterator it;
@@ -339,7 +341,7 @@ string MapClass::PrintByName(string name) {
 	}
 	return out_string;
 }
-
+//Calculate matches is done, where the match index is calculated 
 void MapClass::CalculateMatches(int region, string state, string zipCode, int subcat) {
 	if (region != -1) {
 		SearchRegion(region);
@@ -355,7 +357,7 @@ void MapClass::CalculateMatches(int region, string state, string zipCode, int su
 		SearchSubCat(subcat);
 	}
 }
-
+//prints the nonprofits from highest to lowest match index 
 string MapClass::Print() {
 	string out_string = "";
 	int highest = FindHighestMatchIndex();
@@ -366,13 +368,13 @@ string MapClass::Print() {
 	}
 	return out_string;
 }
-
+//this fucntion resets some of the nonprofit vars
 void MapClass::ResetNonProfitVars() {
 	for (iter = orgs.begin(); iter != orgs.end(); ++iter) {
 		iter->second.matchIndex = false;
 	}
 }
-
+//returns map 
 map<string, Nonprofit>& MapClass::GetMap() {
 	return orgs;
 }
@@ -974,7 +976,8 @@ int main()
 		}
 	}
 	cout << "loaded" << endl;
-
+	
+	//Citation: for time duration https://www.pluralsight.com/blog/software-development/how-to-measure-execution-time-intervals-in-c--
     
 	while (window.isOpen())
 	{
@@ -1208,7 +1211,7 @@ int main()
 						auto begin = chrono::high_resolution_clock::now();
 						int count = 0;
 						for (unsigned int i = 0; i < maps.size(); i++) {
-							if (maps[i].second->FindName(input) == true) {
+							if (maps[i].second->FindName(input) == true) { //if the name is able to be found, printby name is executed 
 								cout << "correct map found" << endl;
 								out_string += maps[i].second->PrintByName(input);
 								break;

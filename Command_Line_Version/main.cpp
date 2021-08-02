@@ -353,9 +353,11 @@ int main(){
                     if (category == maps[i].first) {
                         if (choice == 2) {
                             //map<string, Nonprofit>& source = maps[i].second->GetMap;
+                            //populate heap with map choice
                             HeapClass heap = HeapClass(target, maps[i].second->GetMap());
                             int count = 0; //place to choose how many results to see
                             while (!heap.IsEmpty() && count < 100) {
+                                //extract max match from heap
                                 heap.GetMax();
                                 count++;
                             }

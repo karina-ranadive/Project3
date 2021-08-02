@@ -7,10 +7,12 @@
 using namespace std;
 
 class Tree {
+    // Private class variables
     Nonprofit* root = nullptr;
     Nonprofit target;
     int count = 100;
 public:
+    // AVL tree functions
     Tree(Nonprofit _target, map<string, Nonprofit>& orgs);
     Nonprofit* rotateLeft(Nonprofit* root);
     Nonprofit* rotateRight(Nonprofit* root);

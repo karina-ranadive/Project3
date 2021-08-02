@@ -9,7 +9,7 @@
 #include <vector>
 
 int main(){
-
+    // Creates maps for each main category of nonprofits
     vector<pair <int, MapClass*> > maps;
     MapClass* a = new MapClass("Arts, Culture & Humanities");
     maps.push_back(make_pair(1, a));
@@ -32,6 +32,7 @@ int main(){
 
     ifstream inFile("NPOMasterFileFinal.csv");
 
+    // Reads in data from csv file
     if (inFile.is_open()) {
         string lineFromFile;
         getline(inFile, lineFromFile);
@@ -57,8 +58,10 @@ int main(){
 
             region = stoi(regionStr);
 
+            // Creates nonprofit object from data
             Nonprofit n(name, street, zipStr.substr(0,5), state, region, NTEE);
 
+            // Assigns subcategory and inserts into category map
             if (NTEE.substr(0, 1).compare("A") == 0) {
                 n.setSubcat("Arts, Culture & Humanties");
                 n.setSubcatNum(1);
@@ -230,6 +233,7 @@ int main(){
             cout << "Fill out preferences for nonprofits and if you do not have a preference, press enter on your keyboard" << endl;
             cout << "Based on your preferences, we will list out nonprofits related to your preferences!" << endl;
 
+            // Category options
             cout << endl << "1. Arts, Culture & Humanities" << endl;
             cout << "2. Education" << endl;
             cout << "3. Environment and Animals" << endl;
@@ -250,6 +254,7 @@ int main(){
             cout << endl;
             string subcat;
             int subcategory;
+            // Subcategory options
             if (category == 1 || category == 2 || category == 6 || category == 8 || category == 9) {
                 subcategory = 1;
             }
@@ -289,6 +294,7 @@ int main(){
                 cout << endl;
             }
 
+            // Region options
             cout << "0. New England" << endl;
             cout << "1. Mid-Atlantic" << endl;
             cout << "3. South Atlantic" << endl;
@@ -306,16 +312,19 @@ int main(){
                 reg = "-1";
             int region = stoi(reg);
 
+            // State preference
             cout << endl << "Preference for state: ";
             string state;
             getline(cin, state);
 
+            // Zip preference
             cout << "Preference for Zip Code: ";
             string zipCode;
             getline(cin, zipCode);
             zipCode = zipCode.substr(0, 5);
             cout << endl;
 
+            // Choice of data structure to search with
             cout << "Method Choice:" << endl;
             cout << "1. Map" << endl;
             cout << "2. Heap" << endl;
@@ -323,7 +332,7 @@ int main(){
             string choice_str;
             getline(cin, choice_str);
             int choice = stoi(choice_str);
-
+            
             if (choice == 1) {
                 auto begin = chrono::high_resolution_clock::now();
                 for (unsigned int i = 0; i < maps.size(); i++) {
@@ -355,7 +364,9 @@ int main(){
                             chrono::duration<double> num = end - begin;
                             cout << "Time Taken:" << num.count() << " seconds" << endl;
                         }
+                        // Searches with tree
                         else if (choice == 3) {
+                            // Sends category map to tree
                             Tree(target, maps[i].second->GetMap());
                             auto last = chrono::high_resolution_clock::now();
                             chrono::duration<double> time = last - begin;

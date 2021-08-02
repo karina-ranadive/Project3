@@ -4,6 +4,7 @@ Tree::Tree(Nonprofit _target, map<string, Nonprofit>& orgs) {
     target = _target;
 
     int test = -1;
+    // Runs through orgs to calculate match index and insert into tree
     for (auto iter = orgs.begin(); iter != orgs.end(); iter++) {
         CalculateMatch(iter->second);
         root = Insert(root, &iter->second);
@@ -12,10 +13,12 @@ Tree::Tree(Nonprofit _target, map<string, Nonprofit>& orgs) {
             break;
         }
     }
+    // Traverses tree
     traverse(root);
 }
 
 //Citation: Referenced Balanced Tree Module Slides
+// Rotates left in respect to given node
 Nonprofit* Tree::rotateLeft(Nonprofit* root) {
     Nonprofit* b = root->right;
     Nonprofit* c = b->right;
@@ -29,7 +32,9 @@ Nonprofit* Tree::rotateLeft(Nonprofit* root) {
 
     return b;
 }
+
 //Citation: Referenced Balanced Tree Module Slides
+// Rotates right in respect to given node
 Nonprofit* Tree::rotateRight(Nonprofit* root) {
     Nonprofit* b = root->left;
     Nonprofit* a = b->left;
@@ -45,6 +50,7 @@ Nonprofit* Tree::rotateRight(Nonprofit* root) {
 }
 
 //Citation: Referenced Balanced Tree Module Slides
+// Caculates given node's height
 int Tree::getHeight(Nonprofit* root) {
     int heightL;
     int heightR;
@@ -58,6 +64,7 @@ int Tree::getHeight(Nonprofit* root) {
 }
 
 //Citation: Referenced Balanced Tree Module Slides
+// Calculates balance factor for given node
 int Tree::balanceFactor(Nonprofit* root) {
     if (root != nullptr) {
         return getHeight(root->left) - getHeight(root->right);
@@ -67,6 +74,7 @@ int Tree::balanceFactor(Nonprofit* root) {
 
 //Citation: Lecture Slides: Trees 1 "Binary Search Tree: C++ Insert"
 Nonprofit* Tree::Insert(Nonprofit* root, Nonprofit* obj) {
+    // Recursively inserts node into tree
     if (root == nullptr)
         return obj;
     else if (obj->matchIndex < root->matchIndex)
@@ -80,6 +88,7 @@ Nonprofit* Tree::Insert(Nonprofit* root, Nonprofit* obj) {
 
     int factor = balanceFactor(root);
 
+    // Rebalances tree through required rotations
     if (factor < -1 && obj->matchIndex > root->right->matchIndex)
         return rotateLeft(root);
     if (factor > 1 && obj->matchIndex < root->left->matchIndex)
@@ -98,6 +107,7 @@ Nonprofit* Tree::Insert(Nonprofit* root, Nonprofit* obj) {
     return root;
 }
 
+// Traverse tree through backwards inorder
 void Tree::traverse(Nonprofit* root) {
     if (root != nullptr) {
         traverse(root->right);
@@ -116,6 +126,7 @@ void Tree::traverse(Nonprofit* root) {
     }
 }
 
+// Calculates match based on user preferences
 void Tree::CalculateMatch(Nonprofit &comp) {
     int match = 0;
     if (target.getRegion() == comp.getRegion())

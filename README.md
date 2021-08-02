@@ -6,7 +6,7 @@ The Command_Line_Version folder in this repository contains files to run our pro
 The SFML_Version folder in this repository contains files to run our program in an SFML-based interface. For best performance, type inputs exactly, do not attempt to backspace, and run each kind of search (map/heap/AVL tree) only once per program run.
 
 Citations: 
-Professor Kapoor's Lecture Slides
+Professor Kapoor's Lecture Slides,
 https://github.com/lecy/Open-Data-for-Nonprofit-Research/blob/master/Open_Nonprofit_Datasets/IRS_Business_Master_File.Rmd https://www.vox.com/the-big-idea/2017/4/24/15377056/big-charities-best-charities-evaluation-nonprofit 
 https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/ZPHJYA
 https://www.pluralsight.com/blog/software-development/how-to-measure-execution-time-intervals-in-c-- 

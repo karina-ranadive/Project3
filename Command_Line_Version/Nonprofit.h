@@ -5,6 +5,7 @@
 
 class Nonprofit
 {
+    // Private class variables
     std::string name;
     std::string street;
     std::string zip;
@@ -15,14 +16,18 @@ class Nonprofit
     int subcatNum;
 
 public:
+    // Constructors
     Nonprofit();
     Nonprofit(std::string name, std::string street, std::string zip, std::string state, int region, std::string NTEE);
+    
+    // Public class variables
     int matchIndex;
     int height;
     std::vector<Nonprofit*> sameIndex;
     Nonprofit* left;
     Nonprofit* right;
 
+    // Getters and Setters
     std::string getStreet();
     std::string getZip();
     std::string getState();
@@ -36,6 +41,7 @@ public:
     void setSubcatNum(int subcatNum);
     std::string getName();
 
+    // Comparisons
     friend bool operator < (const Nonprofit& lhs, const Nonprofit& rhs);
     friend bool operator > (const Nonprofit& lhs, const Nonprofit& rhs);
     friend bool operator <= (const Nonprofit& lhs, const Nonprofit& rhs);
